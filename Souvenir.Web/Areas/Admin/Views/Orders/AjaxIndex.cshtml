@@ -1,0 +1,44 @@
+﻿@using Application.Utilites;
+@model IEnumerable<Souvenir.ViewModels.Admin.Orders.IndexViewModel>
+@{
+
+    Layout = null;
+}
+@foreach (var item in Model)
+{
+    <tr>
+        <td>@item.UserFullName</td>
+        <td>@item.UserAddress</td>
+        <td>@item.ItemsCount</td>
+        <td>@item.TotalPayment.ToToman()</td>
+        <td>@item.OrderDate.ToShamsi()</td>
+        <td>
+            @switch (item.Status)
+            {
+                case Status.Registered:
+                    @:تایید نشده
+                    break;
+                case Status.InProgress:
+                    @:در حال انجام
+                    break;
+                case Status.Sent:
+                    @:ارسال شده
+                    break;
+                case Status.Cancelled:
+                    @:لغو شده
+                    break;
+
+            }
+
+        </td>
+        <td>
+            @Ajax.ActionLink("جزئیات", "Detail", new { id = item.Id, status = item.Status }, new AjaxOptions
+            {
+               UpdateTargetId = "Modal",
+               OnSuccess = "OpModal()"
+            },
+               new { @class = "btn btn-info" }
+            )
+        </td>
+    </tr>
+}

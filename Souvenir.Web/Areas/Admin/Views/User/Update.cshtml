@@ -1,0 +1,160 @@
+﻿@using Souvenir.ViewModels.Admin.User
+@model UpdateUserViewModel
+
+@{
+    ViewBag.Title = "ویرایش";
+    ViewBag.Header = "ویرایش کاربر";
+}
+
+
+<div class="shadow p-3 rounded-1 bg-gray">
+
+    @using (Html.BeginForm("UpdateUser", "User", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.UserId)
+
+        <div class="row px-3">
+            <div class="col-12 col-md-6 ">
+                <div class="form-floating">
+                    @Html.TextBoxFor(model => model.Name, new { placeholder = "نام", @class = "form-control" })
+                    @Html.LabelFor(model => model.Name, new { @class = "form-label" })
+                    @Html.ValidationMessageFor(model => model.Name, null, htmlAttributes: new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="form-floating">
+                    @Html.TextBoxFor(model => model.Family, new { placeholder = "قیمت", @class = "form-control" })
+                    @Html.LabelFor(model => model.Family, new { @class = "form-label" })
+                    @Html.ValidationMessageFor(model => model.Family, null, htmlAttributes: new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row px-3">
+            <div class="col-12 col-md-6 ">
+                <div class="form-floating">
+                    @Html.TextBoxFor(model => model.Phone, new { placeholder = "نام", @class = "form-control" })
+                    @Html.LabelFor(model => model.Phone, new { @class = "form-label" })
+                    @Html.ValidationMessageFor(model => model.Phone, null, htmlAttributes: new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="form-floating">
+                    @Html.TextBoxFor(model => model.UserName, new { placeholder = "قیمت", @class = "form-control" })
+                    @Html.LabelFor(model => model.UserName, new { @class = "form-label" })
+                    @Html.ValidationMessageFor(model => model.UserName, null, htmlAttributes: new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row px-3">
+            <div class="col-12">
+                <div class="form-floating">
+                    @Html.TextAreaFor(model => model.Address, new { placeholder = "شرح محصول", @class = "form-control h-auto", rows = "5" })
+                    @Html.LabelFor(model => model.Address, new { @class = "text-area-floating-label" })
+                    @Html.ValidationMessageFor(model => model.Address, null, htmlAttributes: new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row px-3">
+            <div class="col-12 col-md-6 ">
+                <div class="form-floating">
+                    @Html.TextBoxFor(model => model.Email, new { placeholder = "نام", @class = "form-control" })
+                    @Html.LabelFor(model => model.Email, new { @class = "form-label" })
+                    @Html.ValidationMessageFor(model => model.Email, null, htmlAttributes: new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+
+                <div class="form-check form-switch h-100 d-flex align-items-center">
+                    @Html.LabelFor(model => model.EmailConfirmed, new { @class = "form-check-label ms-0 me-2", dir = "ltr" })
+                    @Html.EditorFor(model => model.EmailConfirmed, additionalViewData: new { htmlattributes = new { @class = "form-check-input", type = "checkbox", role = "switch", dir = "ltr" } })
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="row px-3 mt-2">
+            <div class="col-12">
+                <button class="btn btn-success w-100 py-2" type="submit">ذخیره</button>
+            </div>
+        </div>
+    }
+
+</div>
+
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+}
+
+
+@section Navigation{
+
+    <li class="nav-item">
+        <a href="/admin" class="nav-link text-white" aria-current="page">
+            <svg class="bi pe-none me-2" width="16" height="16">
+                <use xlink:href="#home"></use>
+            </svg>
+            خانه
+        </a>
+    </li>
+    <li>
+        <a href="/Admin/Categories" class="nav-link text-white">
+            <svg class="bi pe-none me-2" width="16" height="16">
+                <use xlink:href="#speedometer2"></use>
+            </svg>
+            دسته بندی ها
+        </a>
+    </li>
+    <li>
+        <a href="/Admin/Souvenirs" class="nav-link text-white">
+            <svg class="bi pe-none me-2" width="16" height="16">
+                <use xlink:href="#grid"></use>
+            </svg>
+            محصولات
+        </a>
+    </li>
+    <li>
+        <a href="/Admin/Orders" class="nav-link text-white">
+            <svg class="bi pe-none me-2" width="16" height="16">
+                <use xlink:href="#collection"></use>
+            </svg>
+            سفارشات
+        </a>
+    </li>
+
+
+}
+
+
+@section NavResponsive{
+    <li class="nav-item">
+        <a href="/Admin" class="nav-link py-3 border-bottom rounded-0 " aria-current="page" data-bs-toggle="tooltip" data-bs-placement="left" aria-label="خانه" data-bs-original-title="خانه">
+            <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Home"><use xlink:href="#home"></use></svg>
+        </a>
+    </li>
+    <li>
+        <a href="/Admin/Caetgories" class="nav-link py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="left" aria-label="دسته بندی ها" data-bs-original-title="دسته بندی ها">
+            <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Dashboard"><use xlink:href="#speedometer2"></use></svg>
+        </a>
+    </li>
+
+    <li>
+        <a href="/Admin/Souvenirs" class="nav-link py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="left" aria-label="محصولات" data-bs-original-title="محصولات">
+            <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Products"><use xlink:href="#grid"></use></svg>
+        </a>
+    </li>
+    <li>
+        <a href="/Admin/Orders" class="nav-link py-3  border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="left" aria-label="سفارشات" data-bs-original-title="سفارشات">
+            <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Customers"><use xlink:href="#collection"></use></svg>
+        </a>
+    </li>
+
+}

@@ -1,0 +1,59 @@
+﻿@model Souvenir.ViewModels.Admin.Souvenirs.DetailViewModel
+@{
+    Layout = null;
+
+}
+
+
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">جزئیات</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+            <fieldset class="d-flex mx-3">
+                @Html.LabelFor(model => model.Name)
+                <p class="mx-1">@Model.Name</p>
+            </fieldset>
+
+            <fieldset class="d-flex mx-3">
+                @Html.LabelFor(model => model.Category)
+                <p class="mx-1">@Model.Category</p>
+            </fieldset>
+            <fieldset class="d-flex mx-3">
+                @Html.LabelFor(model => model.Province)
+                <p class="mx-1">@Model.Province</p>
+            </fieldset>
+            <fieldset class="d-flex mx-3">
+                @Html.LabelFor(model => model.Price)
+                <p class="mx-1">@Model.Price</p>
+            </fieldset>
+
+            <fieldset class="d-flex mx-3">
+                @Html.LabelFor(model => model.Inventory)
+                <p class="mx-1">@Model.Inventory</p>
+            </fieldset>
+
+            <fieldset class="d-flex mx-3">
+                @Html.LabelFor(model => model.ShortDescription)
+                <p class="mx-1">@Model.ShortDescription</p>
+            </fieldset>
+
+
+            <fieldset class="d-flex mx-3">
+                @Html.LabelFor(model => model.Image)
+                <img src="~/SouvenirMainImages/@Model.Image" class="rounded-1 img-thumbnail mx-3" style="width :80px; height:80px; object-fit: cover;" />
+            </fieldset>
+
+            <fieldset>
+                <button type="submit" data-bs-dismiss="modal" class="btn btn-primary m-3">بستن</button>
+            </fieldset>
+        </div>
+    </div>
+</div>
+
+
+
+

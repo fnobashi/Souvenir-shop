@@ -1,0 +1,38 @@
+﻿@using Application.Utilites
+@model IEnumerable<Souvenir.DataLayer.Comments>
+
+@{ 
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <div class="comment">
+        <div class="comment-Info">
+            <strong>@item.User.Name</strong>
+            <p>@item.Date.ToShamsi()</p>
+        </div>
+        <div class="comment-text">
+            <p>
+                @item.Comment
+            </p>
+        </div>
+    </div>
+    if (item.CommentReplies != null)
+    {
+        foreach (var reply in item.CommentReplies)
+        {
+            <div class="comment">
+                <div class="comment-Info">
+                    <strong>@reply.User.Name</strong>
+                    <p>@reply.Date.ToShamsi()</p>
+                </div>
+                <div class="comment-text">
+                    <p>
+                        @reply.Comment
+                    </p>
+                </div>
+            </div>
+        }
+    }
+}

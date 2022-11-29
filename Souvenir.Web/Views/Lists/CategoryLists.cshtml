@@ -1,0 +1,26 @@
+﻿@model List<Souvenir.ViewModels.Categories.CategoryListsVIewModel>
+
+@{
+    ViewBag.Title = "دسته بندی ها";
+}
+
+
+
+
+
+<main class="site-lists">
+    <ul class="site-list-container container">
+
+        @foreach (var item in Model)
+        {
+            <li class="site-list-item">
+                <a href="/Categories/@item.Id">
+                    <img src="~/CategoryImages/@item.ImageSrc" alt="">
+                    <div class="site-list-item-info">
+                        <h5>@item.Name</h5>
+                    </div>
+                </a>
+            </li>
+        }
+    </ul>
+</main>

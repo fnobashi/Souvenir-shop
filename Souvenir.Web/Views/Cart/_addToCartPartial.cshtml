@@ -1,0 +1,23 @@
+﻿@model Souvenir.ViewModels.AddToCartViewModel
+@{
+    Layout = null;
+}
+
+
+
+<div class="control-item">
+    <div class="popOver">
+        @using (Html.BeginForm("AddToCart", "Cart", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.OrderId)
+            @Html.HiddenFor(model => model.SouvenirId)
+            @Html.HiddenFor(model => model.Price)
+            <button type="submit" data-popOver="true" id="addToCart">
+                <i class="fa-solid fa-cart-plus"></i>
+            </button>
+            <span class="popOvertext" data-popOver-for="addToCart">افزودن به سبد خرید</span>
+        }
+    </div>
+</div>
+

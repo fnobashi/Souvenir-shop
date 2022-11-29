@@ -1,0 +1,176 @@
+﻿@using Application.Utilites;
+@model IEnumerable<Souvenir.ViewModels.Admin.Orders.IndexViewModel>
+
+@{
+    ViewBag.Title = "سفارشات";
+    ViewBag.Header = "سفارشات";
+}
+
+
+
+
+
+<div class="shadow rounded-1 col-12 p-0 d-flex">
+    <table class="table table-light table-hover table-striped w-100 h-100 text-center rounded-1">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.UserFullName)</th>
+                <th>@Html.DisplayNameFor(model => model.UserAddress)</th>
+                <th>@Html.DisplayNameFor(model => model.ItemsCount)</th>
+                <th>@Html.DisplayNameFor(model => model.TotalPayment)</th>
+                <th>@Html.DisplayNameFor(model => model.OrderDate)</th>
+                <th>@Html.DisplayNameFor(model => model.Status)</th>
+                <th>کنترل ها</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.UserFullName</td>
+                    <td>@item.UserAddress</td>
+                    <td>@item.ItemsCount</td>
+                    <td>@item.TotalPayment.ToToman()</td>
+                    <td>@item.OrderDate.ToShamsi()</td>
+                    <td>
+                        @switch (item.Status)
+                        {
+                            case Status.Registered:
+                                @:تایید نشده
+                                break;
+                            case Status.InProgress:
+                                @:در حال انجام
+                                break;
+                            case Status.Sent:
+                                @:ارسال شده
+                                break;
+                            case Status.Cancelled:
+                                @:لغو شده
+                                break;
+
+                        }
+
+                    </td>
+                    <td>
+                        @Ajax.ActionLink("جزئیات", "Detail", new { id = item.Id, status = item.Status }, new AjaxOptions
+                        {
+                           UpdateTargetId = "Modal",
+                           OnSuccess = "OpModal()"
+                        },
+                           new { @class = "btn btn-info" }
+                        )
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+
+
+
+@section Modal{
+
+    <div class="modal fade" id="Modal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+
+        </div>
+    </div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/Swal")
+    <script>
+
+        var modalElement = document.getElementById('Modal')
+        var Modal = new bootstrap.Modal(modalElement);
+
+
+        function OpModal() {
+            Modal.show()
+        }
+
+
+        function UpdateTable() {
+            Modal.hide();
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'سفارش تایید شد',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+
+
+
+    </script>
+}
+
+@section Navigation{
+
+
+    <li class="nav-item">
+        <a href="/admin" class="nav-link text-white" aria-current="page">
+            <svg class="bi pe-none me-2" width="16" height="16">
+                <use xlink:href="#home"></use>
+            </svg>
+            خانه
+        </a>
+    </li>
+    <li>
+        <a href="/Admin/Categories" class="nav-link text-white">
+            <svg class="bi pe-none me-2" width="16" height="16">
+                <use xlink:href="#speedometer2"></use>
+            </svg>
+            دسته بندی ها
+        </a>
+    </li>
+    <li>
+        <a href="/Admin/Souvenirs" class="nav-link text-white">
+            <svg class="bi pe-none me-2" width="16" height="16">
+                <use xlink:href="#grid"></use>
+            </svg>
+            محصولات
+        </a>
+    </li>
+    <li>
+        <a href="/Admin/Orders" class="nav-link text-white active">
+            <svg class="bi pe-none me-2" width="16" height="16">
+                <use xlink:href="#collection"></use>
+            </svg>
+            سفارشات
+        </a>
+    </li>
+
+
+}
+
+@section NavResponsive{
+    <li class="nav-item">
+        <a href="/Admin" class="nav-link py-3 border-bottom rounded-0 " aria-current="page" data-bs-toggle="tooltip" data-bs-placement="left" aria-label="خانه" data-bs-original-title="خانه">
+            <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Home"><use xlink:href="#home"></use></svg>
+        </a>
+    </li>
+    <li>
+        <a href="/Admin/Categories" class="nav-link py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="left" aria-label="دسته بندی ها" data-bs-original-title="دسته بندی ها">
+            <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Dashboard"><use xlink:href="#speedometer2"></use></svg>
+        </a>
+    </li>
+
+    <li>
+        <a href="/Admin/Souvenirs" class="nav-link py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="left" aria-label="محصولات" data-bs-original-title="محصولات">
+            <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Products"><use xlink:href="#grid"></use></svg>
+        </a>
+    </li>
+    <li>
+        <a href="/Admin/Orders" class="nav-link py-3 active border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="left" aria-label="سفارشات" data-bs-original-title="سفارشات">
+            <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Customers"><use xlink:href="#collection"></use></svg>
+        </a>
+    </li>
+
+}

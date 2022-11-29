@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Souvenir.ViewModels.Admin.Categories.IndexViewModel>
+
+@{
+    Layout = null;
+}
+
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            <img class="img-thumbnail rounded-1" src="~/CategoryImages/@item.ImageSrc" style="width:80px; height: 80px; object-fit:cover;" />
+
+        </td>
+        <td>@item.Name </td>
+        <td>
+            @Ajax.ActionLink("حذف", "DeleteCategory", new { id = item.Id }, new AjaxOptions
+             {
+                UpdateTargetId = "Modal",
+                OnSuccess = "OpModal()"
+             },
+                new { @class = "btn btn-danger" }
+             )
+
+            @Html.ActionLink("ویرایش", "UpdateCategory", new { id = item.Id }, new { @class = "btn btn-warning" })
+            @Ajax.ActionLink("جزئیات", "Detail", new { id = item.Id }, new AjaxOptions
+             {
+                UpdateTargetId = "Modal",
+                OnSuccess = "OpModal()"
+             },
+             new { @class = "btn btn-info" }
+             )
+
+        </td>
+    </tr>
+}
+
+

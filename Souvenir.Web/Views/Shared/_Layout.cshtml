@@ -1,0 +1,177 @@
+﻿@using Microsoft.AspNet.Identity
+@using Souvenir.DataLayer;
+@{
+
+    string UserId = User.Identity.GetUserId();
+    string AdminName = "";
+    if (User.Identity.IsAuthenticated)
+    {
+        using (UnitOfWork db = new UnitOfWork())
+        {
+            AdminName = db.Users.GetUserById(UserId).Name;
+        }
+    }
+  
+}
+
+
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/Css/main.css">
+    <link rel="stylesheet" href="~/Css/FontAwesome.css">
+    <link rel="icon" type="image/x-icon" href="~/Images/favicon.png">
+    <script src="~/Scripts/main/FontAwesome.js"></script>
+    <title>@ViewBag.Title</title>
+</head>
+
+<body>
+
+    @* top menu *@
+    <nav class="top-menu">
+        <div class="container menu">
+            <div class="top-menu-right">
+                <div class="responsive-button">
+                    <i class="fas fa-bars"></i>
+                </div>
+
+                <div class="top-menu-links">
+                    <ul>
+                        <li><a href="/">خانه</a></li>
+                        <li>
+                            @Html.ActionLink("دسته بندی ها", "CategoryLists", "Lists")
+                        </li>
+                        <li>
+                            @Html.ActionLink("درباره ما", "About", "MainPage")
+                        </li>
+
+                        <li>
+                            @Html.ActionLink("تماس با ما", "ContactWays", "MainPAge")
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="top-menu-left">
+                @if (Request.IsAuthenticated)
+                {
+
+
+
+
+                    using (Html.BeginForm("LogOff", "Users", FormMethod.Post, new { Id = "logoutForm", @class = "top-menu-signUp" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <a href="javascript:document.getElementById('logoutForm').submit()">خروج</a>
+                        <p>/</p>
+                        <a href="/User/Manage">سلام @AdminName</a>
+                    }
+                    <a style="margin:0 10px" href="/User/Cart">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </a>
+                }
+                else
+                {
+                    <div class="top-menu-signUp">
+                        <a href="/Login?ReturnUrl=@HttpContext.Current.Request.RawUrl">ورود</a>
+                        <p>/</p>
+                        <a href="/Register">ثبت نام</a>
+                    </div>
+                }
+
+                <div class="top-menu-logo">
+                    <img src="~/Images/favicon.png" alt="logo">
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <nav class="responsive-menu">
+        <div id="responsive-menu-close-btn" class="responsive-menu-close-btn">
+            <i class="fa fa-close"></i>
+        </div>
+        <header>
+            <img src="~/Images/favicon.png" alt="">
+        </header>
+
+        <ul class="responsive-menu-links">
+            <li><a href="/">خانه</a></li>
+            <li>
+                @Html.ActionLink("دسته بندی ها", "CategoryLists", "Lists")
+            </li>
+            <li>
+                @Html.ActionLink("تماس با ما", "ContactWays", "MainPAge")
+            </li>
+            <li>
+                @Html.ActionLink("تماس با ما", "ContactWays", "MainPAge")
+            </li>
+        </ul>
+    </nav>
+    @* End top menu *@
+
+    @RenderBody()
+
+    @* Footer *@
+    <footer class="site-footer">
+        <div class="site-footer-contact">
+            <h2>راه های ارتباطی</h2>
+            <P>
+                تلفن تماس : 021-88123456
+            </P>
+            <p>ایمیل: somthing@gmail.com</p>
+            <P>آدرس : تهران ، خیابان اول ، کوچه سمت راست ، پلاک 3</P>
+        </div>
+        <div class="site-footer-social">
+            <h2>با ما در ارتباط باشید</h2>
+            <div class="site-footer-social-links">
+                <a href="#" title="instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" title="telegram"><i class="fab fa-telegram"></i></a>
+                <a href="#" title="twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" title="facebook"><i class="fab fa-facebook"></i></a>
+            </div>
+            <div class="site-footer-search">
+                @using (Html.BeginForm("Index", "Search", FormMethod.Get))
+                {
+
+                    <input type="text" placeholder="جستجو کنید" name="key" id="key">
+                    <button type="submit"><i class="fas fa-magnifying-glass"></i></button>
+                }
+
+            </div>
+        </div>
+        <div class="site-footer-links">
+            <h2>لینک های سایت</h2>
+            <ul>
+                <li><a href="/">صفحه اصلی</a></li>
+                <li>
+                    @Html.ActionLink("عضویت در سایت", "Register", "Users")
+                </li>
+
+                <li>
+                    @Html.ActionLink("ورود به سایت", "Login", "Users")
+                </li>
+
+                <li>
+                    @Html.ActionLink("دسته بندی ها", "CategoryLists", "Lists")
+                </li>
+
+            </ul>
+
+        </div>
+
+        <div class="site-footer-copyright">
+            <p class="site-footer-copyright-text">© ۱۴۰۱ - کلیه حقوق این فروشگاه محفوظ است</p>
+        </div>
+    </footer>
+
+    @* End Footer *@
+
+
+    <script src="~/Scripts/main/jquery.min.js"></script>
+    <script src="~/Scripts/responsiveMenu.js"></script>
+    @RenderSection("scripts", false)
+</body>
+</html>

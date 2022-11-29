@@ -1,0 +1,108 @@
+﻿@model Souvenir.ViewModels.Admin.Categories.InsertViewModel
+@{
+    ViewBag.Title = "افزودن دسته بندی";
+    ViewBag.Header = "دسته بندی جدید";
+}
+
+
+<div class="shadow p-3 rounded-1 bg-gray">
+
+    @using (Html.BeginForm("AddCategory", "Categories", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+        @Html.AntiForgeryToken()
+
+
+
+        @Html.ValidationSummary(false, null, new { @class = "text-danger" })
+        <div class="row px-3">
+            <div class="col-12 col-lg-6">
+                <div class="form-floating">
+                    @Html.TextBoxFor(model => model.Name, new { placeholder = "نام", @class = "form-control" })
+                    @Html.LabelFor(model => model.Name, new { @class = "form-label" })
+                </div>
+
+            </div>
+            <div class="col-12 col-lg-6">
+                <label for="mainImage">عکس</label>
+                <input type="file" class="form-control" id="file" name="file">
+            </div>
+        </div>
+
+        <div class="row px-3 mt-2">
+            <div class="col-12">
+                <button class="btn btn-success w-100 py-2" type="submit">ذخیره</button>
+            </div>
+        </div>
+    }
+
+</div>
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+}
+
+@section Navigation{
+
+    <li class="nav-item">
+        <a href="/admin" class="nav-link text-white" aria-current="page">
+            <svg class="bi pe-none me-2" width="16" height="16">
+                <use xlink:href="#home"></use>
+            </svg>
+            خانه
+        </a>
+    </li>
+    <li>
+        <a href="/Admin/Categories" class="nav-link text-white active">
+            <svg class="bi pe-none me-2" width="16" height="16">
+                <use xlink:href="#speedometer2"></use>
+            </svg>
+            دسته بندی ها
+        </a>
+    </li>
+    <li>
+        <a href="/Admin/Souvenirs" class="nav-link text-white">
+            <svg class="bi pe-none me-2" width="16" height="16">
+                <use xlink:href="#grid"></use>
+            </svg>
+            محصولات
+        </a>
+    </li>
+    <li>
+        <a href="/Admin/Orders" class="nav-link text-white">
+            <svg class="bi pe-none me-2" width="16" height="16">
+                <use xlink:href="#collection"></use>
+            </svg>
+            سفارشات
+        </a>
+    </li>
+
+
+}
+
+@section NavResponsive{
+    <li class="nav-item">
+        <a href="/Admin" class="nav-link py-3 border-bottom rounded-0 " aria-current="page" data-bs-toggle="tooltip" data-bs-placement="left" aria-label="خانه" data-bs-original-title="خانه">
+            <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Home"><use xlink:href="#home"></use></svg>
+        </a>
+    </li>
+    <li>
+        <a href="/Admin/Categories" class="nav-link py-3 active border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="left" aria-label="دسته بندی ها" data-bs-original-title="دسته بندی ها">
+            <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Dashboard"><use xlink:href="#speedometer2"></use></svg>
+        </a>
+    </li>
+
+    <li>
+        <a href="/Admin/Souvenirs" class="nav-link py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="left" aria-label="محصولات" data-bs-original-title="محصولات">
+            <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Products"><use xlink:href="#grid"></use></svg>
+        </a>
+    </li>
+    <li>
+        <a href="/Admin/Orders" class="nav-link py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="left" aria-label="سفارشات" data-bs-original-title="سفارشات">
+            <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Customers"><use xlink:href="#collection"></use></svg>
+        </a>
+    </li>
+
+}

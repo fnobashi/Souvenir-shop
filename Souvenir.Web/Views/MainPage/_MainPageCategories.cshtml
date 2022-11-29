@@ -1,0 +1,14 @@
+﻿@model List<Souvenir.ViewModels.MainPageLists.CategoryListsViewModel>
+
+
+@foreach (var item in Model)
+{
+    <a href="/Categories/@item.CategoryId" class="category-item">
+        <div class="category-item-img">
+            <img src="~/CategoryImages/@item.ImageSrc" alt="">
+        </div>
+        <div class="category-item-desc">
+            <h3>@item.Name</h3>
+        </div>
+    </a>
+}

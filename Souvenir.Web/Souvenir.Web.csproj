@@ -1,0 +1,995 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E9EA0E22-EFF9-4B41-B29D-A7BED1147241}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Souvenir.Web</RootNamespace>
+    <AssemblyName>Souvenir.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44369</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.2\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=3.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.4.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.4.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.4.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.4.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.2.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.SqlClient, Version=4.6.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SqlClient.4.8.3\lib\net461\System.Data.SqlClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.9\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.9\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.9\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.9\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.9\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\CkEditor\adapters\jquery.js" />
+    <Content Include="Areas\Admin\CkEditor\build-config.js" />
+    <Content Include="Areas\Admin\CkEditor\ckeditor.js" />
+    <Content Include="Areas\Admin\CkEditor\config.js" />
+    <Content Include="Areas\Admin\CkEditor\contents.css" />
+    <Content Include="Areas\Admin\CkEditor\lang\en.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\a11yhelp.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\af.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\ar.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\az.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\bg.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\ca.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\cs.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\cy.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\da.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\de-ch.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\de.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\el.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\en-au.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\en-gb.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\en.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\eo.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\es-mx.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\es.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\et.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\eu.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\fa.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\fi.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\fo.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\fr-ca.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\fr.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\gl.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\gu.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\he.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\hi.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\hr.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\hu.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\id.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\it.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\ja.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\km.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\ko.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\ku.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\lt.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\lv.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\mk.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\mn.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\nb.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\nl.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\no.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\oc.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\pl.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\pt-br.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\pt.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\ro.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\ru.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\si.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\sk.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\sl.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\sq.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\sr-latn.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\sr.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\sv.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\th.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\tr.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\tt.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\ug.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\uk.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\vi.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\zh-cn.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\zh.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\a11yhelp\dialogs\lang\_translationstatus.txt" />
+    <Content Include="Areas\Admin\CkEditor\plugins\about\dialogs\about.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\about\dialogs\hidpi\logo_ckeditor.png" />
+    <Content Include="Areas\Admin\CkEditor\plugins\about\dialogs\logo_ckeditor.png" />
+    <Content Include="Areas\Admin\CkEditor\plugins\clipboard\dialogs\paste.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\dialog\dialogDefinition.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\dialog\styles\dialog.css" />
+    <Content Include="Areas\Admin\CkEditor\plugins\icons.png" />
+    <Content Include="Areas\Admin\CkEditor\plugins\icons_hidpi.png" />
+    <Content Include="Areas\Admin\CkEditor\plugins\image\dialogs\image.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\image\images\noimage.png" />
+    <Content Include="Areas\Admin\CkEditor\plugins\link\dialogs\anchor.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\link\dialogs\link.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\link\images\anchor.png" />
+    <Content Include="Areas\Admin\CkEditor\plugins\link\images\hidpi\anchor.png" />
+    <Content Include="Areas\Admin\CkEditor\plugins\magicline\images\hidpi\icon-rtl.png" />
+    <Content Include="Areas\Admin\CkEditor\plugins\magicline\images\hidpi\icon.png" />
+    <Content Include="Areas\Admin\CkEditor\plugins\magicline\images\icon-rtl.png" />
+    <Content Include="Areas\Admin\CkEditor\plugins\magicline\images\icon.png" />
+    <Content Include="Areas\Admin\CkEditor\plugins\pastefromgdocs\filter\default.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\pastefromlibreoffice\filter\default.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\pastefromword\filter\default.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\pastetools\filter\common.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\pastetools\filter\image.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\scayt\dialogs\dialog.css" />
+    <Content Include="Areas\Admin\CkEditor\plugins\scayt\dialogs\options.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\scayt\dialogs\toolbar.css" />
+    <Content Include="Areas\Admin\CkEditor\plugins\scayt\skins\moono-lisa\scayt.css" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\af.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\ar.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\az.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\bg.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\ca.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\cs.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\cy.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\da.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\de-ch.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\de.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\el.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\en-au.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\en-ca.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\en-gb.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\en.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\eo.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\es-mx.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\es.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\et.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\eu.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\fa.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\fi.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\fr-ca.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\fr.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\gl.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\he.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\hr.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\hu.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\id.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\it.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\ja.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\km.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\ko.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\ku.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\lt.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\lv.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\nb.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\nl.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\no.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\oc.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\pl.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\pt-br.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\pt.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\ro.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\ru.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\si.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\sk.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\sl.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\sq.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\sr-latn.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\sr.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\sv.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\th.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\tr.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\tt.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\ug.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\uk.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\vi.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\zh-cn.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\zh.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\lang\_translationstatus.txt" />
+    <Content Include="Areas\Admin\CkEditor\plugins\specialchar\dialogs\specialchar.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\tableselection\styles\tableselection.css" />
+    <Content Include="Areas\Admin\CkEditor\plugins\tabletools\dialogs\tableCell.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\table\dialogs\table.js" />
+    <Content Include="Areas\Admin\CkEditor\plugins\widget\images\handle.png" />
+    <Content Include="Areas\Admin\CkEditor\samples\css\samples.css" />
+    <Content Include="Areas\Admin\CkEditor\samples\img\github-top.png" />
+    <Content Include="Areas\Admin\CkEditor\samples\img\header-bg.png" />
+    <Content Include="Areas\Admin\CkEditor\samples\img\header-separator.png" />
+    <Content Include="Areas\Admin\CkEditor\samples\img\logo.png" />
+    <Content Include="Areas\Admin\CkEditor\samples\img\logo.svg" />
+    <Content Include="Areas\Admin\CkEditor\samples\img\navigation-tip.png" />
+    <Content Include="Areas\Admin\CkEditor\samples\index.html" />
+    <Content Include="Areas\Admin\CkEditor\samples\js\sample.js" />
+    <Content Include="Areas\Admin\CkEditor\samples\js\sf.js" />
+    <Content Include="Areas\Admin\CkEditor\samples\old\ajax.html" />
+    <Content Include="Areas\Admin\CkEditor\samples\old\api.html" />
+    <Content Include="Areas\Admin\CkEditor\samples\old\appendto.html" />
+    <Content Include="Areas\Admin\CkEditor\samples\old\assets\inlineall\logo.png" />
+    <Content Include="Areas\Admin\CkEditor\samples\old\assets\outputxhtml\outputxhtml.css" />
+    <Content Include="Areas\Admin\CkEditor\samples\old\assets\posteddata.php" />
+    <Content Include="Areas\Admin\CkEditor\samples\old\assets\sample.jpg" />
+    <Content Include="Areas\Admin\CkEditor\samples\old\assets\uilanguages\languages.js" />
+    <Content Include="Areas\Admin\CkEditor\samples\old\datafiltering.html" />
+    <Content Include="Areas\Admin\CkEditor\samples\old\dialog\assets\my_dialog.js" />
+    <Content Include="Areas\Admin\CkEditor\samples\old\dialog\dialog.html" />
+    <Content Include="Areas\Admin\CkEditor\samples\old\divreplace.html" />
+    <Content Include="Areas\Admin\CkEditor\samples\old\enterkey\enterkey.html" />
+    <Content Include="Areas\Admin\CkEditor\samples\old\htmlwriter\outputhtml.html" />
+    <Content Include="Areas\Admin\CkEditor\samples\old\index.html" />
+    <Content Include="Areas\Admin\CkEditor\samples\old\inlineall.html" />
+    <Content Include="Areas\Admin\CkEditor\samples\old\inlinebycode.html" />
+    <Content Include="Areas\Admin\CkEditor\samples\old\inlinetextarea.html" />
+    <Content Include="Areas\Admin\CkEditor\samples\old\jquery.html" />
+    <Content Include="Areas\Admin\CkEditor\samples\old\magicline\magicline.html" />
+    <Content Include="Areas\Admin\CkEditor\samples\old\readonly.html" />
+    <Content Include="Areas\Admin\CkEditor\samples\old\replacebyclass.html" />
+    <Content Include="Areas\Admin\CkEditor\samples\old\replacebycode.html" />
+    <Content Include="Areas\Admin\CkEditor\samples\old\sample.css" />
+    <Content Include="Areas\Admin\CkEditor\samples\old\sample.js" />
+    <Content Include="Areas\Admin\CkEditor\samples\old\sample_posteddata.php" />
+    <Content Include="Areas\Admin\CkEditor\samples\old\tabindex.html" />
+    <Content Include="Areas\Admin\CkEditor\samples\old\toolbar\toolbar.html" />
+    <Content Include="Areas\Admin\CkEditor\samples\old\uicolor.html" />
+    <Content Include="Areas\Admin\CkEditor\samples\old\uilanguages.html" />
+    <Content Include="Areas\Admin\CkEditor\samples\old\wysiwygarea\fullpage.html" />
+    <Content Include="Areas\Admin\CkEditor\samples\old\xhtmlstyle.html" />
+    <Content Include="Areas\Admin\CkEditor\samples\toolbarconfigurator\css\fontello.css" />
+    <Content Include="Areas\Admin\CkEditor\samples\toolbarconfigurator\font\fontello.svg" />
+    <Content Include="Areas\Admin\CkEditor\samples\toolbarconfigurator\font\LICENSE.txt" />
+    <Content Include="Areas\Admin\CkEditor\samples\toolbarconfigurator\index.html" />
+    <Content Include="Areas\Admin\CkEditor\samples\toolbarconfigurator\js\abstracttoolbarmodifier.js" />
+    <Content Include="Areas\Admin\CkEditor\samples\toolbarconfigurator\js\fulltoolbareditor.js" />
+    <Content Include="Areas\Admin\CkEditor\samples\toolbarconfigurator\js\toolbarmodifier.js" />
+    <Content Include="Areas\Admin\CkEditor\samples\toolbarconfigurator\js\toolbartextmodifier.js" />
+    <Content Include="Areas\Admin\CkEditor\samples\toolbarconfigurator\lib\codemirror\codemirror.css" />
+    <Content Include="Areas\Admin\CkEditor\samples\toolbarconfigurator\lib\codemirror\codemirror.js" />
+    <Content Include="Areas\Admin\CkEditor\samples\toolbarconfigurator\lib\codemirror\javascript.js" />
+    <Content Include="Areas\Admin\CkEditor\samples\toolbarconfigurator\lib\codemirror\neo.css" />
+    <Content Include="Areas\Admin\CkEditor\samples\toolbarconfigurator\lib\codemirror\show-hint.css" />
+    <Content Include="Areas\Admin\CkEditor\samples\toolbarconfigurator\lib\codemirror\show-hint.js" />
+    <Content Include="Areas\Admin\CkEditor\skins\moono-lisa\dialog.css" />
+    <Content Include="Areas\Admin\CkEditor\skins\moono-lisa\dialog_ie.css" />
+    <Content Include="Areas\Admin\CkEditor\skins\moono-lisa\dialog_ie8.css" />
+    <Content Include="Areas\Admin\CkEditor\skins\moono-lisa\dialog_iequirks.css" />
+    <Content Include="Areas\Admin\CkEditor\skins\moono-lisa\editor.css" />
+    <Content Include="Areas\Admin\CkEditor\skins\moono-lisa\editor_gecko.css" />
+    <Content Include="Areas\Admin\CkEditor\skins\moono-lisa\editor_ie.css" />
+    <Content Include="Areas\Admin\CkEditor\skins\moono-lisa\editor_ie8.css" />
+    <Content Include="Areas\Admin\CkEditor\skins\moono-lisa\editor_iequirks.css" />
+    <Content Include="Areas\Admin\CkEditor\skins\moono-lisa\icons.png" />
+    <Content Include="Areas\Admin\CkEditor\skins\moono-lisa\icons_hidpi.png" />
+    <Content Include="Areas\Admin\CkEditor\skins\moono-lisa\images\arrow.png" />
+    <Content Include="Areas\Admin\CkEditor\skins\moono-lisa\images\close.png" />
+    <Content Include="Areas\Admin\CkEditor\skins\moono-lisa\images\hidpi\close.png" />
+    <Content Include="Areas\Admin\CkEditor\skins\moono-lisa\images\hidpi\lock-open.png" />
+    <Content Include="Areas\Admin\CkEditor\skins\moono-lisa\images\hidpi\lock.png" />
+    <Content Include="Areas\Admin\CkEditor\skins\moono-lisa\images\hidpi\refresh.png" />
+    <Content Include="Areas\Admin\CkEditor\skins\moono-lisa\images\lock-open.png" />
+    <Content Include="Areas\Admin\CkEditor\skins\moono-lisa\images\lock.png" />
+    <Content Include="Areas\Admin\CkEditor\skins\moono-lisa\images\refresh.png" />
+    <Content Include="Areas\Admin\CkEditor\skins\moono-lisa\images\spinner.gif" />
+    <Content Include="Areas\Admin\CkEditor\styles.js" />
+    <Content Include="Areas\Admin\CkEditor\vendor\promise.js" />
+    <Content Include="Areas\Admin\Content\Css\bootstrap.rtl.min.css" />
+    <Content Include="Areas\Admin\Content\Css\main.css" />
+    <Content Include="Areas\Admin\Content\FontAwesome\script\FontAwesome.js" />
+    <Content Include="Areas\Admin\Content\FontAwesome\style\FontAwesome.css" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\font-face.css" />
+    <Content Include="Areas\Admin\Content\Fonts\Yekan\Yekan.svg" />
+    <Content Include="Areas\Admin\Content\Images\person.jpg" />
+    <Content Include="Areas\Admin\Content\Swal\sweetalert2.all.js" />
+    <Content Include="Areas\Admin\Content\Swal\sweetalert2.all.min.js" />
+    <Content Include="Areas\Admin\Content\Swal\sweetalert2.css" />
+    <Content Include="Areas\Admin\Content\Swal\sweetalert2.js" />
+    <Content Include="Areas\Admin\Content\Swal\sweetalert2.min.css" />
+    <Content Include="Areas\Admin\Content\Swal\sweetalert2.min.js" />
+    <Content Include="Areas\Admin\Views\Orders\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\AjaxIndex.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\User\UserDetail.cshtml" />
+    <Content Include="Areas\Admin\Views\User\AjaxIndex.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Update.cshtml" />
+    <Content Include="Areas\Admin\CkEditor\bender-runner.config.json" />
+    <Content Include="Areas\Admin\CkEditor\CHANGES.md" />
+    <Content Include="Areas\Admin\CkEditor\LICENSE.md" />
+    <Content Include="Areas\Admin\CkEditor\plugins\scayt\CHANGELOG.md" />
+    <Content Include="Areas\Admin\CkEditor\plugins\scayt\LICENSE.md" />
+    <Content Include="Areas\Admin\CkEditor\plugins\scayt\README.md" />
+    <Content Include="Areas\Admin\CkEditor\README.md" />
+    <Content Include="Areas\Admin\CkEditor\samples\toolbarconfigurator\font\config.json" />
+    <Content Include="Areas\Admin\CkEditor\samples\toolbarconfigurator\font\fontello.eot" />
+    <Content Include="Areas\Admin\CkEditor\samples\toolbarconfigurator\font\fontello.ttf" />
+    <Content Include="Areas\Admin\CkEditor\samples\toolbarconfigurator\font\fontello.woff" />
+    <Content Include="Areas\Admin\CkEditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
+    <Content Include="Areas\Admin\CkEditor\SECURITY.md" />
+    <Content Include="Areas\Admin\CkEditor\skins\moono-lisa\readme.md" />
+    <Content Include="Areas\Admin\Views\User\DeleteUser.cshtml" />
+    <None Include="Connected Services\ZarinPal\configuration91.svcinfo" />
+    <None Include="Connected Services\ZarinPal\configuration.svcinfo" />
+    <None Include="Connected Services\ZarinPal\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-grid.rtl.css" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Content\bootstrap-theme.min.rtl.css" />
+    <Content Include="Content\bootstrap-theme.rtl.css" />
+    <Content Include="Content\bootstrap-utilities.css" />
+    <Content Include="Content\bootstrap-utilities.min.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.min.rtl.css" />
+    <Content Include="Content\bootstrap.rtl.css" />
+    <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Css\FontAwesome.css" />
+    <Content Include="Css\main.css" />
+    <Content Include="fonts\fa-all.min.css" />
+    <Content Include="fonts\vazir\font-face.css" />
+    <Content Include="fonts\Yekan.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\1.jpg" />
+    <Content Include="Images\1.svg" />
+    <Content Include="Images\10.jpg" />
+    <Content Include="Images\11.jpg" />
+    <Content Include="Images\12.jpg" />
+    <Content Include="Images\13.jpg" />
+    <Content Include="Images\14.jpg" />
+    <Content Include="Images\15.jpg" />
+    <Content Include="Images\16.jpg" />
+    <Content Include="Images\17.jpg" />
+    <Content Include="Images\18.jpg" />
+    <Content Include="Images\19.jpg" />
+    <Content Include="Images\2.svg" />
+    <Content Include="Images\20.jpeg" />
+    <Content Include="Images\3.jpeg" />
+    <Content Include="Images\4.jpg" />
+    <Content Include="Images\5.jpeg" />
+    <Content Include="Images\6.jpg" />
+    <Content Include="Images\7.jpg" />
+    <Content Include="Images\8.jpg" />
+    <Content Include="Images\9.jpg" />
+    <Content Include="Images\back.jpg" />
+    <Content Include="Images\background1.svg" />
+    <Content Include="Images\background2.svg" />
+    <Content Include="Images\background3.svg" />
+    <Content Include="Images\background5.svg" />
+    <Content Include="Images\Backgrounds\21.svg" />
+    <Content Include="Images\Backgrounds\background.svg" />
+    <Content Include="Images\controls.png" />
+    <Content Include="Images\dezful_Wallpaper.jpg" />
+    <Content Include="Images\favicon.png" />
+    <Content Include="Images\Gilan.jpg" />
+    <Content Include="Images\kerman.jpg" />
+    <Content Include="Images\Kerman_Shahzadeh_Garden.jpg" />
+    <Content Include="Images\masjed-shiraz.jpg" />
+    <Content Include="Images\site-background.jpg" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.esm.js" />
+    <Content Include="Scripts\bootstrap.esm.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\esm\popper-utils.js" />
+    <Content Include="Scripts\esm\popper-utils.min.js" />
+    <Content Include="Scripts\esm\popper.js" />
+    <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\esm\popper.min.js.map" />
+    <Content Include="Scripts\esm\popper.js.map" />
+    <Content Include="Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="Css\main.css.map" />
+    <Content Include="Images\2.webp" />
+    <Content Include="fonts\vazir\Farsi-Digits-Without-Latin\Vazir-Black-FD-WOL.eot" />
+    <Content Include="fonts\vazir\Farsi-Digits-Without-Latin\Vazir-Black-FD-WOL.ttf" />
+    <Content Include="fonts\vazir\Farsi-Digits-Without-Latin\Vazir-Black-FD-WOL.woff" />
+    <Content Include="fonts\vazir\Farsi-Digits-Without-Latin\Vazir-Black-FD-WOL.woff2" />
+    <Content Include="fonts\vazir\Farsi-Digits-Without-Latin\Vazir-Bold-FD-WOL.eot" />
+    <Content Include="fonts\vazir\Farsi-Digits-Without-Latin\Vazir-Bold-FD-WOL.ttf" />
+    <Content Include="fonts\vazir\Farsi-Digits-Without-Latin\Vazir-Bold-FD-WOL.woff" />
+    <Content Include="fonts\vazir\Farsi-Digits-Without-Latin\Vazir-Bold-FD-WOL.woff2" />
+    <Content Include="fonts\vazir\Farsi-Digits-Without-Latin\Vazir-FD-WOL.eot" />
+    <Content Include="fonts\vazir\Farsi-Digits-Without-Latin\Vazir-FD-WOL.ttf" />
+    <Content Include="fonts\vazir\Farsi-Digits-Without-Latin\Vazir-FD-WOL.woff" />
+    <Content Include="fonts\vazir\Farsi-Digits-Without-Latin\Vazir-FD-WOL.woff2" />
+    <Content Include="fonts\vazir\Farsi-Digits-Without-Latin\Vazir-Light-FD-WOL.eot" />
+    <Content Include="fonts\vazir\Farsi-Digits-Without-Latin\Vazir-Light-FD-WOL.ttf" />
+    <Content Include="fonts\vazir\Farsi-Digits-Without-Latin\Vazir-Light-FD-WOL.woff" />
+    <Content Include="fonts\vazir\Farsi-Digits-Without-Latin\Vazir-Light-FD-WOL.woff2" />
+    <Content Include="fonts\vazir\Farsi-Digits-Without-Latin\Vazir-Medium-FD-WOL.eot" />
+    <Content Include="fonts\vazir\Farsi-Digits-Without-Latin\Vazir-Medium-FD-WOL.ttf" />
+    <Content Include="fonts\vazir\Farsi-Digits-Without-Latin\Vazir-Medium-FD-WOL.woff" />
+    <Content Include="fonts\vazir\Farsi-Digits-Without-Latin\Vazir-Medium-FD-WOL.woff2" />
+    <Content Include="fonts\vazir\Farsi-Digits-Without-Latin\Vazir-Thin-FD-WOL.eot" />
+    <Content Include="fonts\vazir\Farsi-Digits-Without-Latin\Vazir-Thin-FD-WOL.ttf" />
+    <Content Include="fonts\vazir\Farsi-Digits-Without-Latin\Vazir-Thin-FD-WOL.woff" />
+    <Content Include="fonts\vazir\Farsi-Digits-Without-Latin\Vazir-Thin-FD-WOL.woff2" />
+    <Content Include="fonts\vazir\Farsi-Digits\Vazir-Black-FD.eot" />
+    <Content Include="fonts\vazir\Farsi-Digits\Vazir-Black-FD.ttf" />
+    <Content Include="fonts\vazir\Farsi-Digits\Vazir-Black-FD.woff" />
+    <Content Include="fonts\vazir\Farsi-Digits\Vazir-Black-FD.woff2" />
+    <Content Include="fonts\vazir\Farsi-Digits\Vazir-Bold-FD.eot" />
+    <Content Include="fonts\vazir\Farsi-Digits\Vazir-Bold-FD.ttf" />
+    <Content Include="fonts\vazir\Farsi-Digits\Vazir-Bold-FD.woff" />
+    <Content Include="fonts\vazir\Farsi-Digits\Vazir-Bold-FD.woff2" />
+    <Content Include="fonts\vazir\Farsi-Digits\Vazir-FD.eot" />
+    <Content Include="fonts\vazir\Farsi-Digits\Vazir-FD.ttf" />
+    <Content Include="fonts\vazir\Farsi-Digits\Vazir-FD.woff" />
+    <Content Include="fonts\vazir\Farsi-Digits\Vazir-FD.woff2" />
+    <Content Include="fonts\vazir\Farsi-Digits\Vazir-Light-FD.eot" />
+    <Content Include="fonts\vazir\Farsi-Digits\Vazir-Light-FD.ttf" />
+    <Content Include="fonts\vazir\Farsi-Digits\Vazir-Light-FD.woff" />
+    <Content Include="fonts\vazir\Farsi-Digits\Vazir-Light-FD.woff2" />
+    <Content Include="fonts\vazir\Farsi-Digits\Vazir-Medium-FD.eot" />
+    <Content Include="fonts\vazir\Farsi-Digits\Vazir-Medium-FD.ttf" />
+    <Content Include="fonts\vazir\Farsi-Digits\Vazir-Medium-FD.woff" />
+    <Content Include="fonts\vazir\Farsi-Digits\Vazir-Medium-FD.woff2" />
+    <Content Include="fonts\vazir\Farsi-Digits\Vazir-Thin-FD.eot" />
+    <Content Include="fonts\vazir\Farsi-Digits\Vazir-Thin-FD.ttf" />
+    <Content Include="fonts\vazir\Farsi-Digits\Vazir-Thin-FD.woff" />
+    <Content Include="fonts\vazir\Farsi-Digits\Vazir-Thin-FD.woff2" />
+    <Content Include="fonts\vazir\Vazir-Black.eot" />
+    <Content Include="fonts\vazir\Vazir-Black.ttf" />
+    <Content Include="fonts\vazir\Vazir-Black.woff" />
+    <Content Include="fonts\vazir\Vazir-Black.woff2" />
+    <Content Include="fonts\vazir\Vazir-Bold.eot" />
+    <Content Include="fonts\vazir\Vazir-Bold.ttf" />
+    <Content Include="fonts\vazir\Vazir-Bold.woff" />
+    <Content Include="fonts\vazir\Vazir-Bold.woff2" />
+    <Content Include="fonts\vazir\Vazir-Light.eot" />
+    <Content Include="fonts\vazir\Vazir-Light.ttf" />
+    <Content Include="fonts\vazir\Vazir-Light.woff" />
+    <Content Include="fonts\vazir\Vazir-Light.woff2" />
+    <Content Include="fonts\vazir\Vazir-Medium.eot" />
+    <Content Include="fonts\vazir\Vazir-Medium.ttf" />
+    <Content Include="fonts\vazir\Vazir-Medium.woff" />
+    <Content Include="fonts\vazir\Vazir-Medium.woff2" />
+    <Content Include="fonts\vazir\Vazir-Thin.eot" />
+    <Content Include="fonts\vazir\Vazir-Thin.ttf" />
+    <Content Include="fonts\vazir\Vazir-Thin.woff" />
+    <Content Include="fonts\vazir\Vazir-Thin.woff2" />
+    <Content Include="fonts\vazir\Vazir.eot" />
+    <Content Include="fonts\vazir\Vazir.ttf" />
+    <Content Include="fonts\vazir\Vazir.woff" />
+    <Content Include="fonts\vazir\Vazir.woff2" />
+    <Content Include="fonts\vazir\Without-Latin\Vazir-Black-WOL.eot" />
+    <Content Include="fonts\vazir\Without-Latin\Vazir-Black-WOL.ttf" />
+    <Content Include="fonts\vazir\Without-Latin\Vazir-Black-WOL.woff" />
+    <Content Include="fonts\vazir\Without-Latin\Vazir-Black-WOL.woff2" />
+    <Content Include="fonts\vazir\Without-Latin\Vazir-Bold-WOL.eot" />
+    <Content Include="fonts\vazir\Without-Latin\Vazir-Bold-WOL.ttf" />
+    <Content Include="fonts\vazir\Without-Latin\Vazir-Bold-WOL.woff" />
+    <Content Include="fonts\vazir\Without-Latin\Vazir-Bold-WOL.woff2" />
+    <Content Include="fonts\vazir\Without-Latin\Vazir-Light-WOL.eot" />
+    <Content Include="fonts\vazir\Without-Latin\Vazir-Light-WOL.ttf" />
+    <Content Include="fonts\vazir\Without-Latin\Vazir-Light-WOL.woff" />
+    <Content Include="fonts\vazir\Without-Latin\Vazir-Light-WOL.woff2" />
+    <Content Include="fonts\vazir\Without-Latin\Vazir-Medium-WOL.eot" />
+    <Content Include="fonts\vazir\Without-Latin\Vazir-Medium-WOL.ttf" />
+    <Content Include="fonts\vazir\Without-Latin\Vazir-Medium-WOL.woff" />
+    <Content Include="fonts\vazir\Without-Latin\Vazir-Medium-WOL.woff2" />
+    <Content Include="fonts\vazir\Without-Latin\Vazir-Thin-WOL.eot" />
+    <Content Include="fonts\vazir\Without-Latin\Vazir-Thin-WOL.ttf" />
+    <Content Include="fonts\vazir\Without-Latin\Vazir-Thin-WOL.woff" />
+    <Content Include="fonts\vazir\Without-Latin\Vazir-Thin-WOL.woff2" />
+    <Content Include="fonts\vazir\Without-Latin\Vazir-WOL.eot" />
+    <Content Include="fonts\vazir\Without-Latin\Vazir-WOL.ttf" />
+    <Content Include="fonts\vazir\Without-Latin\Vazir-WOL.woff" />
+    <Content Include="fonts\vazir\Without-Latin\Vazir-WOL.woff2" />
+    <Content Include="fonts\Yekan.eot" />
+    <Content Include="fonts\Yekan.ttf" />
+    <Content Include="fonts\Yekan.woff" />
+    <Content Include="fonts\Yekan.woff2" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.esm.min.js.map" />
+    <Content Include="Scripts\bootstrap.esm.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Content\bootstrap.rtl.min.css.map" />
+    <Content Include="Content\bootstrap.rtl.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Content\bootstrap-utilities.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Default\Index.cshtml" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits-Without-Latin\Vazir-Black-FD-WOL.eot" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits-Without-Latin\Vazir-Black-FD-WOL.ttf" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits-Without-Latin\Vazir-Black-FD-WOL.woff" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits-Without-Latin\Vazir-Black-FD-WOL.woff2" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits-Without-Latin\Vazir-Bold-FD-WOL.eot" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits-Without-Latin\Vazir-Bold-FD-WOL.ttf" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits-Without-Latin\Vazir-Bold-FD-WOL.woff" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits-Without-Latin\Vazir-Bold-FD-WOL.woff2" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits-Without-Latin\Vazir-FD-WOL.eot" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits-Without-Latin\Vazir-FD-WOL.ttf" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits-Without-Latin\Vazir-FD-WOL.woff" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits-Without-Latin\Vazir-FD-WOL.woff2" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits-Without-Latin\Vazir-Light-FD-WOL.eot" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits-Without-Latin\Vazir-Light-FD-WOL.ttf" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits-Without-Latin\Vazir-Light-FD-WOL.woff" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits-Without-Latin\Vazir-Light-FD-WOL.woff2" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits-Without-Latin\Vazir-Medium-FD-WOL.eot" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits-Without-Latin\Vazir-Medium-FD-WOL.ttf" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits-Without-Latin\Vazir-Medium-FD-WOL.woff" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits-Without-Latin\Vazir-Medium-FD-WOL.woff2" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits-Without-Latin\Vazir-Thin-FD-WOL.eot" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits-Without-Latin\Vazir-Thin-FD-WOL.ttf" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits-Without-Latin\Vazir-Thin-FD-WOL.woff" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits-Without-Latin\Vazir-Thin-FD-WOL.woff2" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits\Vazir-Black-FD.eot" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits\Vazir-Black-FD.ttf" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits\Vazir-Black-FD.woff" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits\Vazir-Black-FD.woff2" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits\Vazir-Bold-FD.eot" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits\Vazir-Bold-FD.ttf" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits\Vazir-Bold-FD.woff" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits\Vazir-Bold-FD.woff2" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits\Vazir-FD.eot" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits\Vazir-FD.ttf" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits\Vazir-FD.woff" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits\Vazir-FD.woff2" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits\Vazir-Light-FD.eot" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits\Vazir-Light-FD.ttf" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits\Vazir-Light-FD.woff" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits\Vazir-Light-FD.woff2" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits\Vazir-Medium-FD.eot" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits\Vazir-Medium-FD.ttf" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits\Vazir-Medium-FD.woff" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits\Vazir-Medium-FD.woff2" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits\Vazir-Thin-FD.eot" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits\Vazir-Thin-FD.ttf" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits\Vazir-Thin-FD.woff" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Farsi-Digits\Vazir-Thin-FD.woff2" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Root\Vazir-Black.eot" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Root\Vazir-Black.ttf" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Root\Vazir-Black.woff" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Root\Vazir-Black.woff2" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Root\Vazir-Bold.eot" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Root\Vazir-Bold.ttf" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Root\Vazir-Bold.woff" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Root\Vazir-Bold.woff2" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Root\Vazir-Light.eot" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Root\Vazir-Light.ttf" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Root\Vazir-Light.woff" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Root\Vazir-Light.woff2" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Root\Vazir-Medium.eot" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Root\Vazir-Medium.ttf" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Root\Vazir-Medium.woff" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Root\Vazir-Medium.woff2" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Root\Vazir-Thin.eot" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Root\Vazir-Thin.ttf" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Root\Vazir-Thin.woff" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Root\Vazir-Thin.woff2" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Root\Vazir.eot" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Root\Vazir.ttf" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Root\Vazir.woff" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Root\Vazir.woff2" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Without-Latin\Vazir-Black-WOL.eot" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Without-Latin\Vazir-Black-WOL.ttf" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Without-Latin\Vazir-Black-WOL.woff" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Without-Latin\Vazir-Black-WOL.woff2" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Without-Latin\Vazir-Bold-WOL.eot" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Without-Latin\Vazir-Bold-WOL.ttf" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Without-Latin\Vazir-Bold-WOL.woff" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Without-Latin\Vazir-Bold-WOL.woff2" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Without-Latin\Vazir-Light-WOL.eot" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Without-Latin\Vazir-Light-WOL.ttf" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Without-Latin\Vazir-Light-WOL.woff" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Without-Latin\Vazir-Light-WOL.woff2" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Without-Latin\Vazir-Medium-WOL.eot" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Without-Latin\Vazir-Medium-WOL.ttf" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Without-Latin\Vazir-Medium-WOL.woff" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Without-Latin\Vazir-Medium-WOL.woff2" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Without-Latin\Vazir-Thin-WOL.eot" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Without-Latin\Vazir-Thin-WOL.ttf" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Without-Latin\Vazir-Thin-WOL.woff" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Without-Latin\Vazir-Thin-WOL.woff2" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Without-Latin\Vazir-WOL.eot" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Without-Latin\Vazir-WOL.ttf" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Without-Latin\Vazir-WOL.woff" />
+    <Content Include="Areas\Admin\Content\Fonts\Vazir\Without-Latin\Vazir-WOL.woff2" />
+    <Content Include="Areas\Admin\Content\Fonts\Yekan\Yekan.eot" />
+    <Content Include="Areas\Admin\Content\Fonts\Yekan\Yekan.ttf" />
+    <Content Include="Areas\Admin\Content\Fonts\Yekan\Yekan.woff" />
+    <Content Include="Areas\Admin\Content\Fonts\Yekan\Yekan.woff2" />
+    <Content Include="Areas\Admin\Views\Categories\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\Error.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\AddCategory.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\UpdateCategory.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\DeleteCategory.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\AjaxIndex.cshtml" />
+    <Content Include="Areas\Admin\Views\Souvenirs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Souvenirs\AddSouvenir.cshtml" />
+    <Content Include="Areas\Admin\Views\Souvenirs\UpdateSouvenir.cshtml" />
+    <Content Include="Areas\Admin\Views\Souvenirs\DeleteSouvenir.cshtml" />
+    <Content Include="Areas\Admin\Views\Souvenirs\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\Souvenirs\AjaxIndex.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Index.cshtml" />
+    <None Include="Connected Services\ZarinPal\PaymentGatewayImplementationService.wsdl" />
+    <Content Include="Connected Services\ZarinPal\Souvenir.Web.ZarinPal.GetUnverifiedTransactionsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ZarinPal\Souvenir.Web.ZarinPal.PaymentRequestResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ZarinPal\Souvenir.Web.ZarinPal.PaymentRequestWithExtraResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ZarinPal\Souvenir.Web.ZarinPal.PaymentVerificationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ZarinPal\Souvenir.Web.ZarinPal.PaymentVerificationWithExtraResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ZarinPal\Souvenir.Web.ZarinPal.RefreshAuthorityResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\image-zoomer.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\main\FontAwesome.js" />
+    <Content Include="Css\fullpage.css" />
+    <Content Include="Scripts\main\fullpage.extensions.js" />
+    <Content Include="Scripts\main\fullpage.extensions.min.js" />
+    <Content Include="Scripts\main\fullpage.js" />
+    <Content Include="Css\fullpage.min.css" />
+    <Content Include="Scripts\main\fullpage.min.js" />
+    <Content Include="Scripts\main\HomePage.js" />
+    <Content Include="Scripts\main\IranMap.js" />
+    <Content Include="Scripts\main\jquery.js" />
+    <Content Include="Scripts\main\jquery.min.js" />
+    <Content Include="Css\lightslider.min.css" />
+    <Content Include="Scripts\main\lightslider.min.js" />
+    <Content Include="Scripts\main\MainScript.js" />
+    <Content Include="Scripts\main\splide.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\popOvers.js" />
+    <Content Include="Scripts\popper-utils.js" />
+    <Content Include="Scripts\popper-utils.min.js" />
+    <Content Include="Scripts\popper.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\responsiveMenu.js" />
+    <Content Include="Scripts\single-page-slider.js" />
+    <Content Include="Scripts\umd\popper-utils.js" />
+    <Content Include="Scripts\umd\popper-utils.min.js" />
+    <Content Include="Scripts\umd\popper.js" />
+    <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DefaultController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrdersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SouvenirsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Connected Services\ZarinPal\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\ListsController.cs" />
+    <Compile Include="Controllers\MainPageController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\SouvenirController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\UsersManagerController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RazorEngine\CSharpRazorViewEngine.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Scripts\umd\popper.js.map" />
+    <Content Include="Scripts\umd\popper-utils.min.js.map" />
+    <Content Include="Scripts\umd\popper-utils.js.map" />
+    <Content Include="Scripts\README.md" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Scripts\popper.js.map" />
+    <Content Include="Scripts\popper-utils.min.js.map" />
+    <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\MainPage\Index.cshtml" />
+    <Content Include="Css\fullpage.min.css.map" />
+    <Content Include="Views\MainPage\_MapInfo.cshtml" />
+    <Content Include="Views\MainPage\_MostVisited.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\MainPage\_NewestProducts.cshtml" />
+    <Content Include="Views\MainPage\_MainPageCategories.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Souvenir\Index.cshtml" />
+    <Content Include="Views\Shared\NofFoundError.cshtml" />
+    <Content Include="Views\Lists\CategoryLists.cshtml" />
+    <Content Include="Views\Lists\SouvenirListsByCategory.cshtml" />
+    <Content Include="Views\Lists\SouvenirListsByProvince.cshtml" />
+    <Content Include="Views\Users\Login.cshtml" />
+    <Content Include="Views\Users\Register.cshtml" />
+    <Content Include="Views\Users\RegisterEmailSent.cshtml" />
+    <Content Include="Views\Users\ConfirmEmail.cshtml" />
+    <Content Include="Views\Users\VerifyCode.cshtml" />
+    <Content Include="Views\Users\ForgotPassword.cshtml" />
+    <Content Include="Views\Users\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Users\ResetPassword.cshtml" />
+    <Content Include="Views\Users\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\UsersManager\Index.cshtml" />
+    <Content Include="Views\UsersManager\UpdateUserInformation.cshtml" />
+    <Content Include="Views\UsersManager\ChangePassword.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Cart\_addToCartPartial.cshtml" />
+    <Content Include="Views\Cart\_addToCartResultPartial.cshtml" />
+    <Content Include="Views\Cart\Payment.cshtml" />
+    <Content Include="Views\Cart\VerifyPayment.cshtml" />
+    <Content Include="Views\UsersManager\OrdersList.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\MainPage\About.cshtml" />
+    <Content Include="Views\MainPage\ContactWays.cshtml" />
+    <Content Include="Views\Souvenir\LoadComments.cshtml" />
+    <Content Include="Views\Cart\AjaxIndex.cshtml" />
+    <Content Include="Views\MainPage\AjaxAbout.cshtml" />
+    <Content Include="Views\MainPage\AjaxContactWays.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="CategoryImages\" />
+    <Folder Include="SouvenirMainImages\" />
+    <Folder Include="SouvenirOtherImages\" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Application.Utilites\Application.Utilites.csproj">
+      <Project>{5cbb72dd-50f4-43e1-a5b0-38c0e67f162f}</Project>
+      <Name>Application.Utilites</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Souvenir.DataLayer\Souvenir.DataLayer.csproj">
+      <Project>{3c7672c4-259c-42b7-8b9f-d08be6393812}</Project>
+      <Name>Souvenir.DataLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Souvenir.ViewModels\Souvenir.ViewModels.csproj">
+      <Project>{7c647a31-3948-4be5-8fda-b0a7e78c3885}</Project>
+      <Name>Souvenir.ViewModels</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\ZarinPal\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>5518</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44369/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

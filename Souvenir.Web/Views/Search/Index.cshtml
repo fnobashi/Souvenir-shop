@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Souvenir.ViewModels.Souvenirs.SearchViewModel> 
+@{
+    ViewBag.Title = ViewBag.Key;
+}
+
+
+<main class="site-lists">
+    <ul class="site-list-container container">
+        @foreach (var item in Model)
+        {
+            <li class="site-list-item">
+                <a href="/Souvenirs/@item.Id">
+                    <img src="~/SouvenirMainImages/@item.ImageSrc" alt="">
+                    <div class="site-list-item-info">
+                        <h5>@item.Title</h5>
+                        <p>@item.ShortDescription</p>
+                    </div>
+                </a>
+            </li>
+        }
+    </ul>
+</main>

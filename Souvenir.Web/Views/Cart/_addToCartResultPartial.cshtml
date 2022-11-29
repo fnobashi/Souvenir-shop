@@ -1,0 +1,26 @@
+﻿@model  Souvenir.DataLayer.CartResult
+
+@switch (Model)
+{
+    case Souvenir.DataLayer.CartResult.Success:
+        {
+            <div class="information-page">
+                <div class="info success-color">
+                    <p>@ViewBag.Result</p>
+                </div>
+            </div>
+
+            break;
+        }
+    case Souvenir.DataLayer.CartResult.Faild:
+        {
+            <div class="information-page">
+                <div class="info danger-color">
+                    <p>@ViewBag.Result</p>
+                </div>
+            </div>
+            break;
+        }
+}
+
+

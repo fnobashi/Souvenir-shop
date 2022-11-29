@@ -1,0 +1,19 @@
+﻿@model List<Souvenir.ViewModels.MainPageLists.NewestProductsViewModel>
+
+@foreach (var item in Model)
+{
+    <li class="slider-items">
+        <a href="/Souvenirs/@item.ProductID">
+            <div class="slider-items-image">
+                <img src="~/SouvenirMainImages/@item.ProductImageSrc" alt="img">
+            </div>
+            <div class="slider-items-desc">
+                <h4>@item.ProductName</h4>
+                <p>
+                    @item.ProductShortDescription
+                </p>
+            </div>
+        </a>
+    </li>
+}
+

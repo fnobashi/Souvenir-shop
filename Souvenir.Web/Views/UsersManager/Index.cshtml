@@ -1,0 +1,128 @@
+﻿@model Souvenir.ViewModels.IndexViewModel
+
+@{
+    ViewBag.Title = "پنل کاربری";
+}
+
+
+<main class="UserManager container">
+    <header>
+        <h2>پنل کاربری</h2>
+    </header>
+
+    <table class="UserInformation">
+        <tbody>
+            <tr>
+                <td>
+                    <strong>نام کاربری :</strong>
+                    <p>@Model.UserName</p>
+                </td>
+                <td>
+                    <strong>ایمیل : </strong>
+                    <p>@Model.Email</p>
+                </td>
+                <td>
+                    <strong>نام : </strong>
+                    <p>@Model.Name</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>نام خانوادگی : </strong>
+                    <p>@Model.Family</p>
+                </td>
+                <td>
+                    <strong>شماره تماس : </strong>
+                    <p>@Model.PhoneNumber</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>آدرس : </strong>
+                    <p>@Model.Address</p>
+                </td>
+
+                <td>
+                    @using (Html.BeginForm("UpdateUserInformation", "UsersManager", FormMethod.Get))
+                    {
+                        @Html.AntiForgeryToken()
+                        <button class="btn" type="submit">ویرایش اطلاعات</button>
+                    }
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    <div class="UserControlls">
+        @if (Model.TwoFactor)
+        {
+
+            using (Html.BeginForm("DisableTFA", "UsersManager", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <span>(فعال) احراز هویت دو مرحله ای</span>
+                <input type="submit" value="غیر فعال" id="FTASubmit" class="btn">
+
+            }
+        }
+        else
+        {
+
+            using (Html.BeginForm("EnableTFA", "UsersManager", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <span>احراز هویت دو مرحله ای (غیر فعال) </span>
+                <input type="submit" value="فعال" id="FTASubmit" class="btn">
+
+            }
+        }
+
+        @if (Model.BrowserRemembered)
+        {
+
+
+            using (Html.BeginForm("ForgetBrowser", "UsersManager", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <span>بخاطر سپردن مرورگر (فعال) </span>
+                <input type="submit" value="غیر فعال" id="FTASubmit" class="btn">
+            }
+        }
+        else
+        {
+            using (Html.BeginForm("RememberBrowser", "UsersManager", FormMethod.Post))
+            {
+
+                @Html.AntiForgeryToken()
+                <span>بخاطر سپردن مرورگر (غیر فعال) </span>
+                <input type="submit" value="فعال" id="FTASubmit" class="btn">
+
+            }
+        }
+
+
+        @using (Html.BeginForm("ChangePassword", "UsersManager", FormMethod.Get))
+        {
+            @Html.AntiForgeryToken()
+            <input type="submit" value="تغییر کلمه عبور" id="changePassword" class="btn" />
+        }
+
+        @using (Html.BeginForm("OrdersList", "UsersManager", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.UserId);
+            <input type="submit" value="لیست سفارشات" id="OrdersList" class="btn" />
+        }
+
+
+        
+
+
+
+    </div>
+</main>
+

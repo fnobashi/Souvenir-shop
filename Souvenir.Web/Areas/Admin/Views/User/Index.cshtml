@@ -1,0 +1,188 @@
+﻿@using Souvenir.ViewModels.Admin.User
+@model IEnumerable<UsersListViewModel>
+@{
+    ViewBag.Title = "کاربران";
+    ViewBag.Header = "کاربران";
+}
+
+
+
+<div class="shadow rounded-1 col-12 p-0 d-flex">
+
+    <table class="table table-light table-hover table-striped w-100 h-100 text-center rounded-1">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.UserName)</th>
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                <th>@Html.DisplayNameFor(model => model.Roles)</th>
+                <th>کنترل ها</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>@item.UserName</td>
+                    <td>@item.Name</td>
+
+                    <td>
+                        @foreach (var role in item.Roles)
+                        {
+                            <text> @role.RoleName</text>
+                        }
+
+                    </td>
+
+                    <td>
+
+                        @using (Html.BeginForm("Update", "User", FormMethod.Post , new {@class = "d-inline-block"}))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("UserId", item.UserId)
+                            <button type="submit" class="btn btn-warning">ویرایش</button>
+                        }
+
+
+                        @Ajax.ActionLink("جزئیات", "UserDetail", new
+                        {
+                            userId = item.UserId
+                         }, new AjaxOptions
+                         {
+                             UpdateTargetId = "Modal",
+                             OnSuccess = "OpModal()"
+                         },
+                        new
+                        {
+                            @class = "btn btn-info d-inline-block"
+                        })
+
+
+                
+
+
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+
+
+@section Modal{
+
+
+
+    <div class="modal fade" id="Modal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+
+        </div>
+    </div>
+
+
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/Swal")
+    <script>
+
+
+
+        var modalElement = document.getElementById('Modal')
+        var Modal = new bootstrap.Modal(modalElement);
+
+
+        function OpModal() {
+            Modal.show()
+        }
+
+        function Sucsess() {
+            Modal.hide()
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'عملیات با موفقیت انجام شد',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+
+    </script>
+
+}
+
+
+
+@section Navigation{
+
+    <li class="nav-item">
+        <a href="/admin" class="nav-link text-white" aria-current="page">
+            <svg class="bi pe-none me-2" width="16" height="16">
+                <use xlink:href="#home"></use>
+            </svg>
+            خانه
+        </a>
+    </li>
+    <li>
+        <a href="/Admin/Categories" class="nav-link text-white ">
+            <svg class="bi pe-none me-2" width="16" height="16">
+                <use xlink:href="#speedometer2"></use>
+            </svg>
+            دسته بندی ها
+        </a>
+    </li>
+    <li>
+        <a href="/Admin/Souvenirs" class="nav-link text-white">
+            <svg class="bi pe-none me-2" width="16" height="16">
+                <use xlink:href="#grid"></use>
+            </svg>
+            محصولات
+        </a>
+    </li>
+    <li>
+        <a href="/Admin/Orders" class="nav-link text-white">
+            <svg class="bi pe-none me-2" width="16" height="16">
+                <use xlink:href="#collection"></use>
+            </svg>
+            سفارشات
+        </a>
+    </li>
+
+
+}
+
+
+@section NavResponsive{
+    <li class="nav-item">
+        <a href="/Admin" class="nav-link py-3 border-bottom rounded-0 " aria-current="page" data-bs-toggle="tooltip" data-bs-placement="left" aria-label="خانه" data-bs-original-title="خانه">
+            <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Home"><use xlink:href="#home"></use></svg>
+        </a>
+    </li>
+    <li>
+        <a href="/Admin/Caetgories" class="nav-link py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="left" aria-label="دسته بندی ها" data-bs-original-title="دسته بندی ها">
+            <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Dashboard"><use xlink:href="#speedometer2"></use></svg>
+        </a>
+    </li>
+
+    <li>
+        <a href="/Admin/Souvenirs" class="nav-link py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="left" aria-label="محصولات" data-bs-original-title="محصولات">
+            <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Products"><use xlink:href="#grid"></use></svg>
+        </a>
+    </li>
+    <li>
+        <a href="/Admin/Orders" class="nav-link py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="left" aria-label="سفارشات" data-bs-original-title="سفارشات">
+            <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Customers"><use xlink:href="#collection"></use></svg>
+        </a>
+    </li>
+
+}
+
+
+
+
+
+
+

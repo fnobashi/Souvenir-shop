@@ -1,0 +1,42 @@
+﻿@model List<Souvenir.ViewModels.Souvenirs.SouvenirsListByProvinceViewModel>
+
+
+@{
+    ViewBag.Title = "SouvenirListsByProvince";
+}
+
+
+<main class="site-lists">
+
+    <header>
+        <h3>استان @ViewBag.ProvinceName</h3>
+    </header>
+
+    @if (Model.Count == 0)
+    {
+
+        <main class="information-page container" style="margin-top:0;">
+            <div class="info info-color">
+                <p>
+                    متاسفانه هنوز محصولی برای این استان وجود ندارد این بخش به زودی تکمیل می شود
+                </p>
+            </div>
+        </main>
+
+    }
+
+    <ul class="site-list-container container">
+        @foreach (var item in Model)
+        {
+            <li class="site-list-item">
+                <a href="/Souvenirs/@item.Id">
+                    <img src="~/SouvenirMainImages/@item.ImageSrc " alt="">
+                    <div class="site-list-item-info">
+                        <h5>@item.Name  </h5>
+                    </div>
+                </a>
+            </li>
+        }
+
+    </ul>
+</main>

@@ -1,0 +1,16 @@
+﻿@model List<Souvenir.ViewModels.MainPageLists.MostVisitedViewModel>
+
+
+@foreach (var item in Model)
+{
+    <a href="/Souvenirs/@item.SouvenirId" class="card">
+        <div class="card-img">
+            <img src="~/SouvenirMainImages/@item.ImageSrc " alt="">
+        </div>
+        <div class="card-desc">
+            <p>@item.CategoryName</p>
+            <h3>@item.SouvenirName</h3>
+        </div>
+    </a>
+}
+

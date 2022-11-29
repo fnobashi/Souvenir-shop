@@ -1,0 +1,48 @@
+﻿@using Souvenir.ViewModels.Admin.User
+@model IEnumerable<UsersListViewModel>
+
+@foreach (var item in Model)
+{
+    <tr>
+
+        <td>@item.UserName</td>
+        <td>@item.Name</td>
+
+        <td>
+            @foreach (var role in item.Roles)
+            {
+                <text> @role.RoleName</text>
+            }
+
+        </td>
+
+        <td>
+
+            @using (Html.BeginForm("Update", "User", FormMethod.Post, new { @class = "d-inline-block" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("UserId", item.UserId)
+                <button type="submit" class="btn btn-warning">ویرایش</button>
+            }
+
+
+
+            @Ajax.ActionLink("جزئیات", "UserDetail", new
+                    {
+                        userId = item.UserId
+                     }, new AjaxOptions
+                     {
+                         UpdateTargetId = "Modal",
+                         OnSuccess = "OpModal()"
+                     },
+                    new
+                 {
+                        @class = "btn btn-info d-inline-block"
+             })
+
+    
+
+
+        </td>
+    </tr>
+}

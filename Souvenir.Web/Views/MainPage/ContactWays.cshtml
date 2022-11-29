@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "تماس با ما";
+}
+
+
+
+
+
+
+<main class="about-page" id="about-page">
+    <div class="container">
+        <div class="about">
+
+            <div class="links">
+                <a data-ajax="true" data-ajax-update="#about-page" class="about-link " href="/AboutUs?IsAjax=true">
+                    <span>درباره ی ما</span>
+                </a>
+                <a data-ajax="true" data-ajax-update="#about-page" class="contact-link active" href="/ContactUs?IsAjax=true">
+                    <span>تماس با ما</span>
+                </a>
+            </div>
+            <div class="about-us">
+                <div>
+                    <div>
+                        <strong>شماره تماس : </strong>
+                        <p>09122222222</p>
+                    </div>
+                    <div>
+                        <strong>ایمیل : </strong>
+                        <p>soghati@soghati.com</p>
+                    </div>
+                    <div>
+                        <strong>آدرس : </strong>
+                        <p>یه جایی همین دور و برا</p>
+                    </div>
+                    <p>
+                        همچنین می توانید ما رو در اینستاگرام و تلگرام دنبال نمایید .
+                    </p>
+
+                </div>
+            
+            </div>
+        </div>
+
+    </div>
+</main>
+
+
+@section Scripts{
+
+    @Scripts.Render("~/bundles/jqueryAjax")
+
+}
+
+

@@ -1,0 +1,66 @@
+﻿@model Souvenir.ViewModels.LoginViewModel
+@{
+    ViewBag.Title = "ورود";
+}
+
+<main class="login-signUp">
+    <div class="form-container">
+
+        @using (Html.BeginForm("Login", "Users", new { ReturnUrl = ViewBag.ReturnUrl },  FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <header class="login-header">
+                <h4>ورود به سایت</h4>
+                <a href="/">
+                    صفحه اصلی
+                    <i class="fas fa-house-chimney"></i>
+                </a>
+            </header>
+            <div class="logo">
+                <img src="~/Images/favicon.png" alt="Logo">
+            </div>
+
+            @Html.ValidationSummary()
+
+            <div class="form-inputs">
+                <i class="fas fa-lock"></i>
+                @Html.EditorFor(model => model.Email, new { htmlattributes = new { placeholder = "نام کاربری", autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.Email)
+            </div>
+            <div class="form-inputs">
+                <i class="fas fa-lock"></i>
+                @Html.EditorFor(model => model.Password, new { htmlattributes = new { placeholder = "کلمه عبور", autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.Password)
+            </div>
+            <div class="submit">
+                <button type="submit">ورود</button>
+            </div>
+            <div class="related-links">
+                <a href="/Users/ForgotPassword">
+                    <i class="fas fa-lock"></i>
+                    <p>فراموشی کلمه عبور</p>
+                </a>
+                <a href="/Register">
+                    <i class="fas fa-lock"></i>
+                    <p>ثبت نام در سایت</p>
+                </a>
+
+            </div>
+
+            <div class="other-ways">
+                <a title="ورود با حساب گوگل" href="#" class="google">
+                    <i class="fab fa-google"></i>
+                </a>
+            </div>
+
+        }
+
+
+    </div>
+</main>
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

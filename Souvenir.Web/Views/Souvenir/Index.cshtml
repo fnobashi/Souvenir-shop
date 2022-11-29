@@ -1,0 +1,250 @@
+﻿@using Souvenir.DataLayer;
+@model Souvenir.ViewModels.Souvenirs.ShowSouvenirViewModel
+
+@{
+    ViewBag.Title = Model.Name;
+
+    List<Comments> comments = ViewBag.Comments;
+
+}
+
+
+<div class="souvenir-single-page">
+    <div class="souvenir-details container">
+        <div class="souvenir-details-right">
+
+            <div class="controls">
+
+                @if (Model.Inventory == 0)
+                {
+
+                    <div class="control-item">
+                        <div class="popOver">
+                            <div data-popOver="true" id="insufficient" class="hover">
+                                <i class="fab fa-creative-commons-zero"></i>
+                            </div>
+                            <span class="popOvertext" data-popOver-for="insufficient">محصول موجود نمیباشد</span>
+                        </div>
+                    </div>
+
+                }
+                else
+                {
+                    if (User.Identity.IsAuthenticated)
+                    {
+                        if (Model.Inventory <= 4)
+                        {
+                            <div class="control-item">
+                                <div class="popOver">
+                                    <div data-popOver="true" id="low-inventory" class="hover">
+                                        <i class="fa-solid fa-circle-info"></i>
+                                    </div>
+                                    <span class="popOvertext" data-popOver-for="low-inventory">فقط @Model.Inventory عدد در انبار موجود می باشد</span>
+                                </div>
+                            </div>
+
+                        }
+
+
+                        @Html.Action("GetCartInformation", "Cart", new Souvenir.ViewModels.AddToCartViewModel { SouvenirId = Model.SouvenirId, OrderId = Model.OrderID, Price = Model.Price })
+
+
+
+                        if (Model.IsAddToCartResult == true)
+                        {
+                            <div class="control-item">
+                                <div class="popOver">
+                                    <div data-popOver="true" id="stats" class="hover">
+                                        <i class="fa-solid fa-square-full"></i>
+                                    </div>
+                                    <span class="popOvertext" data-popOver-for="stats">@ViewBag.Result</span>
+                                </div>
+                            </div>
+                        }
+
+
+                        <div class="control-item">
+                            <div class="popOver">
+                                <a data-popOver="true" id="show-cart" class="hover" href="/User/Cart">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+
+                                </a>
+                                <span class="popOvertext" data-popOver-for="show-cart">مشاهده سبد خرید</span>
+                            </div>
+                        </div>
+
+                    }
+                    else
+                    {
+                        <div class="control-item">
+
+                            <div class="popOver">
+                                <a data-popOver="true" id="sign-in" class="hover" href="/Login?ReturnUrl=@HttpContext.Current.Request.RawUrl">
+                                    <i class="fa-solid fa-right-to-bracket"></i>
+                                </a>
+                                <span class="popOvertext" data-popOver-for="sign-in">برای افزودن به سبد خرید لطفا وارد حساب کاربری خود شوید</span>
+                            </div>
+                        </div>
+
+                    }
+                }
+
+
+            </div>
+            <div class="souvenir-picture">
+                <div class="image">
+                    <img src="~/SouvenirMainImages/@Model.MainImage" alt="عکس محصول" id="product-result">
+
+                </div>
+            </div>
+
+            @if (Model.OtherImages.Count != 0)
+            {
+
+                <div class="souvenir-other-pictures">
+                    <ul>
+                        @foreach (var item in Model.OtherImages)
+                        {
+                            if (Model.OtherImages.IndexOf(item) > 4)
+                            {
+                                break;
+                            }
+                            <li><img src="~/SouvenirOtherImages/@item.ImageName" alt="@item.ImageName"></li>
+                        }
+                    </ul>
+                </div>
+            }
+        </div>
+        <div class="souvenir-details-left">
+            <div class="souvenir-intro">
+                <header>
+                    <h2>@Model.Name</h2>
+                </header>
+
+                <P>
+                    @Model.ShortDescription
+                </P>
+                <p>
+                    @Html.Raw(Model.Description)
+                    
+                </p>
+            </div>
+            <div class="comments">
+
+                <div class="comments-container">
+                    <header>
+                        <h3>نظرات کاربران</h3>
+                    </header>
+
+                    <div id="comments-body">
+                        @foreach (var item in comments)
+                        {
+                            <div class="comment">
+                                <div class="comment-Info">
+                                    <strong>@item.User.Name</strong>
+                                    <p>@item.Date</p>
+                                </div>
+                                <div class="comment-text">
+                                    <p>
+                                        @item.Comment
+                                    </p>
+                                </div>
+                            </div>
+                            if (item.CommentReplies != null)
+                            {
+                                foreach (var reply in item.CommentReplies)
+                                {
+                                    <div class="comment">
+                                        <div class="comment-Info">
+                                            <strong>@reply.User.Name</strong>
+                                            <p>@reply.Date</p>
+                                        </div>
+                                        <div class="comment-text">
+                                            <p>
+                                                @reply.Comment
+                                            </p>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        }
+
+                    </div>
+
+
+
+
+
+                    <footer>
+
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <strong>برای ارسال نظر لطفا @Html.ActionLink("وارد", "Login", "Users" , routeValues: new {ReturnUrl = HttpContext.Current.Request.RawUrl} , null) شوید.</strong>
+                        }
+
+                        else
+                        {
+                            <h4>شما هم نظرتان را ارسال نمایید</h4>
+
+
+                            using (Ajax.BeginForm("AddComment", "Souvenir", ajaxOptions: new AjaxOptions
+                            {
+
+                                HttpMethod = "Post",
+                                UpdateTargetId = "comments-body",
+
+                            }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.HiddenFor(model => model.SouvenirId)
+                                <textarea rows="5" name="commentBody" placeholder="نظر"></textarea>
+                                <button class="btn" type="submit">ارسال نظر</button>
+
+                            }
+
+                        }
+
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<section class="picture-slider" id="picture-slider">
+    <header>
+        <h4>تصاویر دیگر این محصول</h4>
+    </header>
+    <div class="pic-comp-container">
+        <div class="prev" id="btn-prev">
+            <i class="fas fa-angle-left"></i>
+        </div>
+        <div class="image">
+            <img id="slider-image" src="Images/16.jpg" alt="picture">
+        </div>
+        <div class="frw" id="btn-frw">
+            <i class="fas fa-angle-right"></i>
+        </div>
+    </div>
+    <div class="btn-close" id="btn-close">
+        <i class="fas fa-xmark"></i>
+    </div>
+
+</section>
+
+<section class="image-zoomer" id="image-zoomer">
+</section>
+
+
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryAjax")
+
+    <script src="~/Scripts/popOvers.js"></script>
+    <script src="~/Scripts/single-page-slider.js"></script>
+    <script src="~/Scripts/image-zoomer.js"></script>
+    <script>
+        imageZoom("product-result", "image-zoomer");
+    </script>
+}

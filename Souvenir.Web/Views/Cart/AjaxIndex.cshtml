@@ -1,0 +1,81 @@
+﻿@using Application.Utilites;
+
+@model Souvenir.ViewModels.Cart.CartIndexViewModel
+@{
+    Layout = null;
+    int? souvenirId = ViewBag.SouvenirId;
+
+}
+<div class="shopping-cart-right">
+    <ul class="shopping-cart-items">
+        @foreach (var item in Model.Items)
+        {
+            <li class="shopping-cart-item">
+                <div class="shopping-cart-item-image">
+                    <img src="~/SouvenirMainImages/@item.ImageName" alt="@item.Title">
+                </div>
+                <div class="shopping-cart-item-info">
+                    <header>
+                        <h4>@item.Title</h4>
+                    </header>
+                    <div class="info">
+                        <label>قیمت :</label>
+                        <p>@item.Price.ToToman()</p>
+                    </div>
+
+                    <div class="info">
+                        <label>تعداد</label>
+                        <p>@item.Count</p>
+                    </div>
+                    @if (ViewBag.ErrorMessage != null && item.SouvneirId == souvenirId)
+                    {
+
+                        <div class="info">
+                            <strong>@ViewBag.ErrorMessage</strong>
+
+                        </div>
+                    }
+
+                </div>
+                <dic class="controlls">
+                    <div class="plus">
+                        <a data-ajax="true" data-ajax-mode="replace" data-ajax-update="#shopping-list" href="/User/Cart/AddItem?itemId=@item.ItemID&orderId=@Model.OrderId&souvenirId=@item.SouvneirId">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                    </div>
+                    <div class="count">@item.Count</div>
+                    <div class="minus">
+                        <a data-ajax="true" data-ajax-mode="replace" data-ajax-update="#shopping-list" href="/User/Cart/DeleteItem?itemId=@item.ItemID&orderId=@Model.OrderId&souvenirId=@item.SouvneirId">
+                            <i class="fas fa-minus"></i>
+                        </a>
+                    </div>
+                </dic>
+            </li>
+        }
+    </ul>
+
+</div>
+<div class="shopping-cart-left">
+    <div class="shopping-cart-result">
+        <div class="shopping-cart-result-info">
+            <label>تعداد کالا ها :</label>
+            <strong>@Model.TotalCount </strong>
+        </div>
+        <div class="shopping-cart-result-info">
+            <label>مجموع قیمت :</label>
+
+            <strong>
+                @{string totalPrice = Model.TotalPrice == 0 ? "0 ریال" : Model.TotalPrice.ToToman();}
+                @totalPrice
+            </strong>
+        </div>
+
+        @using (Html.BeginForm("Payment", "Cart", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.OrderId)
+            <button class="btn" type="submit">پرداخت</button>
+        }
+
+    </div>
+</div>

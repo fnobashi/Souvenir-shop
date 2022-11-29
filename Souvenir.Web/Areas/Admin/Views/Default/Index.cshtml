@@ -1,0 +1,134 @@
+﻿@using Souvenir.ViewModels.Admin
+@using Application.Utilites
+@model IndexViewModel
+@{
+    ViewBag.Title = "Index";
+    ViewBag.Header = "صفحه اصلی";
+}
+
+
+
+
+<div class="row">
+    <div class="col-md-4 col-sm-12 text-center d-flex justify-content-center">
+        <div class="card text-bg-danger mb-3" style="min-width: 18rem;">
+            <div class="card-header">@Html.DisplayNameFor(model => model.ProductsCount)</div>
+            <div class="card-body">
+                <h5 class="card-title text-center">@Model.ProductsCount</h5>
+            </div>
+        </div>
+
+    </div>
+
+ 
+
+    <div class="col-md-4 col-sm-12 text-center d-flex justify-content-center">
+        <div class="card text-bg-light mb-3" style="min-width:18rem;">
+            <div class="card-header">@Html.DisplayNameFor(model => model.UsersCount)</div>
+            <div class="card-body">
+                <h5 class="card-title text-center">@Model.UsersCount</h5>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div class="col-md-4 col-sm-12 text-center d-flex justify-content-center">
+        <div class="card text-bg-warning mb-3" style=" min-width: 18rem;">
+            <div class="card-header">@Html.DisplayNameFor(model => model.ThisMonthSale)</div>
+            <div class="card-body">
+                <h5 class="card-title text-center">@Model.ThisMonthSale.ToToman()</h5>
+            </div>
+        </div>
+    </div>
+
+ 
+
+</div>
+
+<div class="row ">
+    <div class="col-md-6 col-sm-12 text-center d-flex justify-content-center">
+        <div class="card text-bg-primary mb-3" style="min-width: 18rem;">
+            <div class="card-header">@Html.DisplayNameFor(model => model.NewOrders)</div>
+            <div class="card-body">
+                <h5 class="card-title text-center">@Model.NewOrders</h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-sm-12 text-center d-flex justify-content-center">
+        <div class="card text-bg-secondary mb-3" style="min-width: 18rem;">
+            <div class="card-header">@Html.DisplayNameFor(model => model.InProgressOrders)</div>
+            <div class="card-body">
+                <h5 class="card-title text-center">@Model.InProgressOrders</h5>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+    @section Navigation{
+
+
+        <li class="nav-item">
+            <a href="/admin" class="nav-link active" aria-current="page">
+                <svg class="bi pe-none me-2" width="16" height="16">
+                    <use xlink:href="#home"></use>
+                </svg>
+                خانه
+            </a>
+        </li>
+        <li>
+            <a href="/Admin/Categories" class="nav-link text-white">
+                <svg class="bi pe-none me-2" width="16" height="16">
+                    <use xlink:href="#speedometer2"></use>
+                </svg>
+                دسته بندی ها
+            </a>
+        </li>
+        <li>
+            <a href="/Admin/Souvenirs" class="nav-link text-white">
+                <svg class="bi pe-none me-2" width="16" height="16">
+                    <use xlink:href="#grid"></use>
+                </svg>
+                محصولات
+            </a>
+        </li>
+        <li>
+            <a href="/Admin/Orders" class="nav-link text-white">
+                <svg class="bi pe-none me-2" width="16" height="16">
+                    <use xlink:href="#collection"></use>
+                </svg>
+                سفارشات
+            </a>
+        </li>
+
+
+    }
+
+    @section NavResponsive{
+        <li class="nav-item">
+            <a href="/Admin" class="nav-link py-3 active border-bottom rounded-0 " aria-current="page" data-bs-toggle="tooltip" data-bs-placement="left" aria-label="خانه" data-bs-original-title="خانه">
+                <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Home"><use xlink:href="#home"></use></svg>
+            </a>
+        </li>
+        <li>
+            <a href="/Admin/Categories" class="nav-link py-3  border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="left" aria-label="دسته بندی ها" data-bs-original-title="دسته بندی ها">
+                <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Dashboard"><use xlink:href="#speedometer2"></use></svg>
+            </a>
+        </li>
+
+        <li>
+            <a href="/Admin/Souvenirs" class="nav-link py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="left" aria-label="محصولات" data-bs-original-title="محصولات">
+                <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Products"><use xlink:href="#grid"></use></svg>
+            </a>
+        </li>
+        <li>
+            <a href="/Admin/Orders" class="nav-link py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="left" aria-label="سفارشات" data-bs-original-title="سفارشات">
+                <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Customers"><use xlink:href="#collection"></use></svg>
+            </a>
+        </li>
+
+    }

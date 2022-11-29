@@ -1,0 +1,58 @@
+﻿@using Application.Utilites;
+@model IEnumerable<Souvenir.ViewModels.Manage.OrdersListViewModel>
+
+
+@{
+    ViewBag.Title = "OrdersList";
+
+}
+
+<main>
+    <div class="container">
+
+        <table class="table" style="text-align:center;">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Date)</th>
+                    <th>@Html.DisplayNameFor(model => model.Amount)</th>
+                    <th>@Html.DisplayNameFor(model => model.TotalPrice)</th>
+                    <th>@Html.DisplayNameFor(model => model.Status)</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Date.ToShamsi()</td>
+                        <td>@item.Amount</td>
+                        <td>@item.TotalPrice</td>
+
+                        @switch (item.Status)
+                        {
+                            case Status.Registered:
+                                <td>سفارش ثبت شده</td>
+                                break;
+                            case Status.InProgress:
+                                <td>در حال انجام</td>
+                                break;
+                            case Status.Sent:
+                                <td>انجام شده</td>
+                                break;
+                            case Status.Cancelled:
+                                <td>لغو شده</td>
+                                break;
+                        }
+
+
+
+
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+
+    </div>
+</main>
+

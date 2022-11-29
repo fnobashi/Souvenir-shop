@@ -1,0 +1,173 @@
+﻿@model Souvenir.ViewModels.Admin.Souvenirs.UpdateViewModel
+@{
+    ViewBag.Title = "ویرایش";
+    ViewBag.Header = "ویرایش محصول";
+}
+
+
+
+<div class="shadow p-3 rounded-1 bg-gray">
+
+    @using (Html.BeginForm("UpdateSouvenir", "Souvenirs", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+        @Html.HiddenFor(model => model.Id)
+        <div class="row px-3">
+            <div class="col-12 col-lg-6">
+                <div class="form-floating">
+
+                    @Html.DropDownList("CategoryId", null, "انتخاب کنید ...", new { @class = "form-select pb-2" })
+                    @Html.LabelFor(model => model.CategoryId)
+                    @Html.ValidationMessageFor(model => model.CategoryId, null, htmlAttributes: new { @class = "text-danger" })
+                </div>
+
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="form-floating">
+                    @Html.DropDownList("ProvinceId", null, "انتخاب کنید ...", new { @class = "form-select pb-2" })
+                    @Html.LabelFor(model => model.ProvinceId)
+                    @Html.ValidationMessageFor(model => model.ProvinceId, null, htmlAttributes: new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row px-3">
+            <div class="col-12 col-md-6 ">
+                <div class="form-floating">
+                    @Html.TextBoxFor(model => model.Name, new { placeholder = "نام", @class = "form-control" })
+                    @Html.LabelFor(model => model.Name, new { @class = "form-label" })
+                    @Html.ValidationMessageFor(model => model.Name, null, htmlAttributes: new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="form-floating">
+                    @Html.TextBoxFor(model => model.Price, new { placeholder = "قیمت", @class = "form-control" })
+                    @Html.LabelFor(model => model.Price, new { @class = "form-label" })
+                    @Html.ValidationMessageFor(model => model.Price, null, htmlAttributes: new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row px-3">
+            <div class="col-12">
+                <div class="form-floating">
+                    @Html.TextAreaFor(model => model.ShortDescription, new { placeholder = "توضیح مختصر", @class = "form-control h-auto", rows = "5" })
+                    @Html.LabelFor(model => model.ShortDescription, new { @class = "text-area-floating-label" })
+                    @Html.ValidationMessageFor(model => model.ShortDescription, null, htmlAttributes: new { @class = "text-danger" })
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row px-3">
+            <div class="col-12">
+                <div class="form-floating">
+                    @Html.TextAreaFor(model => model.Description, new { placeholder = "شرح محصول", @class = "form-control h-auto", rows = "5"  , id= "editor" })
+                    @Html.LabelFor(model => model.Description, new { @class = "text-area-floating-label" })
+                    @Html.ValidationMessageFor(model => model.Description, null, htmlAttributes: new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row px-3">
+            <div class="col-12 col-lg-4 ">
+                <div class="form-floating">
+                    @Html.TextBoxFor(model => model.Inventory, new { placeholder = "موجودی انبار", @class = "form-control" })
+                    @Html.LabelFor(model => model.Inventory, new { @class = "form-label" })
+                    @Html.ValidationMessageFor(model => model.Inventory, null, htmlAttributes: new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-12 col-lg-4">
+                <label for="mainImage">انتخاب عکس اصلی</label>
+                <input type="file" class="form-control" id="mainImage" name="mainImage">
+            </div>
+            <div class="col-12 col-lg-4">
+                <label for="otherImages">انتخاب سایر عکس ها</label>
+                <input type="file" class="form-control" id="otherImages" name="otherImages" multiple>
+            </div>
+        </div>
+
+        <div class="row px-3 mt-2">
+            <div class="col-12">
+                <button class="btn btn-success w-100 py-2" type="submit">ذخیره</button>
+            </div>
+        </div>
+    }
+
+</div>
+
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Areas/Admin/CkEditor/ckeditor.js"></script>
+    <script>
+        window.onload = function () {
+            CKEDITOR.replace('editor');
+        };
+    </script>
+}
+
+
+@section Navigation{
+
+    <li class="nav-item">
+        <a href="/admin" class="nav-link text-white" aria-current="page">
+            <svg class="bi pe-none me-2" width="16" height="16">
+                <use xlink:href="#home"></use>
+            </svg>
+            خانه
+        </a>
+    </li>
+    <li>
+        <a href="/Admin/Categories" class="nav-link text-white">
+            <svg class="bi pe-none me-2" width="16" height="16">
+                <use xlink:href="#speedometer2"></use>
+            </svg>
+            دسته بندی ها
+        </a>
+    </li>
+    <li>
+        <a href="/Admin/Souvenirs" class="nav-link text-white active">
+            <svg class="bi pe-none me-2" width="16" height="16">
+                <use xlink:href="#grid"></use>
+            </svg>
+            محصولات
+        </a>
+    </li>
+    <li>
+        <a href="/Admin/Orders" class="nav-link text-white">
+            <svg class="bi pe-none me-2" width="16" height="16">
+                <use xlink:href="#collection"></use>
+            </svg>
+            سفارشات
+        </a>
+    </li>
+
+
+}
+
+
+@section NavResponsive{
+    <li class="nav-item">
+        <a href="/Admin" class="nav-link py-3 border-bottom rounded-0 " aria-current="page" data-bs-toggle="tooltip" data-bs-placement="left" aria-label="خانه" data-bs-original-title="خانه">
+            <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Home"><use xlink:href="#home"></use></svg>
+        </a>
+    </li>
+    <li>
+        <a href="/Admin/Categories" class="nav-link py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="left" aria-label="دسته بندی ها" data-bs-original-title="دسته بندی ها">
+            <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Dashboard"><use xlink:href="#speedometer2"></use></svg>
+        </a>
+    </li>
+
+    <li>
+        <a href="/Admin/Souvenirs" class="nav-link py-3 active border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="left" aria-label="محصولات" data-bs-original-title="محصولات">
+            <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Products"><use xlink:href="#grid"></use></svg>
+        </a>
+    </li>
+    <li>
+        <a href="/Admin/Orders" class="nav-link py-3 border-bottom rounded-0" data-bs-toggle="tooltip" data-bs-placement="left" aria-label="سفارشات" data-bs-original-title="سفارشات">
+            <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Customers"><use xlink:href="#collection"></use></svg>
+        </a>
+    </li>
+
+}
