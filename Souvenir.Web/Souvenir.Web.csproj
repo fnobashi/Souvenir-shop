@@ -471,32 +471,12 @@
     <Content Include="Global.asax" />
     <Content Include="Images\1.jpg" />
     <Content Include="Images\1.svg" />
-    <Content Include="Images\10.jpg" />
-    <Content Include="Images\11.jpg" />
-    <Content Include="Images\12.jpg" />
-    <Content Include="Images\13.jpg" />
-    <Content Include="Images\14.jpg" />
-    <Content Include="Images\15.jpg" />
-    <Content Include="Images\16.jpg" />
-    <Content Include="Images\17.jpg" />
-    <Content Include="Images\18.jpg" />
-    <Content Include="Images\19.jpg" />
     <Content Include="Images\2.svg" />
-    <Content Include="Images\20.jpeg" />
-    <Content Include="Images\3.jpeg" />
-    <Content Include="Images\4.jpg" />
-    <Content Include="Images\5.jpeg" />
-    <Content Include="Images\6.jpg" />
-    <Content Include="Images\7.jpg" />
-    <Content Include="Images\8.jpg" />
-    <Content Include="Images\9.jpg" />
     <Content Include="Images\back.jpg" />
     <Content Include="Images\background1.svg" />
     <Content Include="Images\background2.svg" />
     <Content Include="Images\background3.svg" />
     <Content Include="Images\background5.svg" />
-    <Content Include="Images\Backgrounds\21.svg" />
-    <Content Include="Images\Backgrounds\background.svg" />
     <Content Include="Images\controls.png" />
     <Content Include="Images\dezful_Wallpaper.jpg" />
     <Content Include="Images\favicon.png" />
@@ -504,21 +484,12 @@
     <Content Include="Images\kerman.jpg" />
     <Content Include="Images\Kerman_Shahzadeh_Garden.jpg" />
     <Content Include="Images\masjed-shiraz.jpg" />
-    <Content Include="Images\site-background.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\esm\popper-utils.js" />
-    <Content Include="Scripts\esm\popper-utils.min.js" />
-    <Content Include="Scripts\esm\popper.js" />
-    <Content Include="Scripts\esm\popper.min.js" />
-    <Content Include="Scripts\esm\popper.min.js.map" />
-    <Content Include="Scripts\esm\popper.js.map" />
-    <Content Include="Scripts\esm\popper-utils.min.js.map" />
-    <Content Include="Scripts\esm\popper-utils.js.map" />
     <Content Include="Css\main.css.map" />
     <Content Include="Images\2.webp" />
     <Content Include="fonts\vazir\Farsi-Digits-Without-Latin\Vazir-Black-FD-WOL.eot" />
@@ -808,16 +779,7 @@
     <Content Include="Scripts\main\lightslider.min.js" />
     <Content Include="Scripts\main\MainScript.js" />
     <Content Include="Scripts\main\splide.min.js" />
-    <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popOvers.js" />
-    <Content Include="Scripts\popper-utils.js" />
-    <Content Include="Scripts\popper-utils.min.js" />
-    <Content Include="Scripts\popper.js" />
-    <Content Include="Scripts\popper.min.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.matchmedia.addListener.js" />
-    <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
-    <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\responsiveMenu.js" />
     <Content Include="Scripts\single-page-slider.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
@@ -866,11 +828,6 @@
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper-utils.min.js.map" />
     <Content Include="Scripts\umd\popper-utils.js.map" />
-    <Content Include="Scripts\README.md" />
-    <Content Include="Scripts\popper.min.js.map" />
-    <Content Include="Scripts\popper.js.map" />
-    <Content Include="Scripts\popper-utils.min.js.map" />
-    <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\MainPage\Index.cshtml" />
     <Content Include="Css\fullpage.min.css.map" />
     <Content Include="Views\MainPage\_MapInfo.cshtml" />
@@ -923,9 +880,6 @@
     <Folder Include="CategoryImages\" />
     <Folder Include="SouvenirMainImages\" />
     <Folder Include="SouvenirOtherImages\" />
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

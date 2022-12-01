@@ -163,9 +163,9 @@ namespace Souvenir.Web.Controllers
 			ZarinPal.PaymentGatewayImplementationServicePortTypeClient zp = new ZarinPal.PaymentGatewayImplementationServicePortTypeClient();
 			string Authority;
 
-            int Status = zp.PaymentRequest("YOUR-ZARINPAL-MERCHANT-CODE", (int)paymentReuslt.Price, "تست درگاه زرین پال در تاپ لرن", "fnobashi@gmail.com", "09355939546", "https://localhost:44369/Cart/VerifyPayment/?orderId=" + order.OrderID, out Authority);
-            //int Status = zp.PaymentRequest("YOUR-ZARINPAL-MERCHANT-CODE", (int)paymentReuslt.Price, "تست درگاه زرین پال در تاپ لرن", "fnobashi@gmail.com", "09355939546", "https://soghatitest.ir/Cart/VerifyPayment/?orderId=" + order.OrderID, out Authority);
-
+            //int Status = zp.PaymentRequest("YOUR-ZARINPAL-MERCHANT-CODE", (int)paymentReuslt.Price, "تست درگاه زرین پال در تاپ لرن", "fnobashi@gmail.com", "09355939546", "https://localhost:44369/Cart/VerifyPayment/?orderId=" + order.OrderID, out Authority);
+            int Status = zp.PaymentRequest("YOUR-ZARINPAL-MERCHANT-CODE", (int)paymentReuslt.Price, "تست درگاه زرین پال در تاپ لرن", "fnobashi@gmail.com", "09355939546", "https://soghatitest.ir/Cart/VerifyPayment/?orderId=" + order.OrderID, out Authority);
+		
             if (Status == 100)
 			{
 				// Response.Redirect("https://www.zarinpal.com/pg/StartPay/" + Authority);

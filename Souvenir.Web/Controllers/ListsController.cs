@@ -46,6 +46,7 @@ namespace Souvenir.Web.Controllers
             
             if (souvenirs.Count > 0)
             {
+               
                 List<SouvenirListsByCategoryViewModel> model = new List<SouvenirListsByCategoryViewModel>();
                 foreach (var item in souvenirs)
                 {
@@ -58,6 +59,7 @@ namespace Souvenir.Web.Controllers
                     };
                     model.Add(listItem);
                 }
+                ViewBag.SiteTitle = db.SouvenirsCategory.GetCategoryById(id.Value).CategoryName;
                 
                 return View(model);
             }
@@ -85,8 +87,9 @@ namespace Souvenir.Web.Controllers
                         Name = item.Name
                     };
                     model.Add(listItem);
-                }
+                }   
                 ViewBag.ProvinceName = province.ProvinceName;
+                ViewBag.SiteTitle = province.ProvinceName;
                 return View(model);
             }
             catch

@@ -150,9 +150,6 @@ namespace Souvenir.Web.Controllers
         public async Task<ActionResult> AddComment(int SouvenirId, string commentBody, int? parentId)
         {
 
-            // need to check if user is logged in or not here ...
-            // need to make it work with nested comments .... 
-
             var comment = new Comments
             {
                 Comment = commentBody,
