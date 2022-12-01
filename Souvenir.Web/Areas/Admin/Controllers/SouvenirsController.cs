@@ -34,7 +34,7 @@ namespace Souvenir.Web.Areas.Admin.Controllers
                     Image = item.MainImage,
                     Category = item.Category.CategoryName,
                     Province = item.Province.ProvinceName,
-                    Price = item.Price.toRial(),
+                    Price = item.Price.ToToman(),
                     Inventory = item.Inventory
                 };
 
@@ -300,7 +300,7 @@ namespace Souvenir.Web.Areas.Admin.Controllers
                     Category = souvenir.Category.CategoryName , 
                     Image = souvenir.MainImage , 
                     Inventory = souvenir.Inventory  , 
-                    Price  = souvenir.Price.toRial(), 
+                    Price  = souvenir.Price.ToToman(), 
                     Province = souvenir.Province.ProvinceName , 
                     ShortDescription  = souvenir.ShortDescription
                 };
